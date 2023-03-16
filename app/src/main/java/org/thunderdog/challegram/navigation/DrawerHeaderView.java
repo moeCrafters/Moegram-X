@@ -57,6 +57,7 @@ import me.vkryl.android.util.ClickHelper;
 import me.vkryl.core.ColorUtils;
 import me.vkryl.core.StringUtils;
 import me.vkryl.core.lambda.Destroyable;
+import moe.kirao.mgx.MoexSettings;
 
 public class DrawerHeaderView extends View implements Destroyable, GlobalAccountListener, GlobalCountersListener, FactorAnimator.Target, ClickHelper.Delegate, TGLegacyManager.EmojiLoadListener {
   private static final int DRAWER_ALPHA = 90;
@@ -213,6 +214,7 @@ public class DrawerHeaderView extends View implements Destroyable, GlobalAccount
 
     private final long userId;
     private final String name, phone;
+    private String username;
     private ImageFile avatar, avatarFull;
     private final AvatarPlaceholder avatarPlaceholder;
 
@@ -243,7 +245,12 @@ public class DrawerHeaderView extends View implements Destroyable, GlobalAccount
       userId = account.getKnownUserId();
       if (account.hasUserInfo()) {
         name = account.getName();
-        if (Settings.instance().needHidePhoneNumber()) {
+        username = account.getUsername();
+        if (MoexSettings.instance().isHidePhoneNumber() && username != null) {
+          phone = "@" + username;
+        } else if (MoexSettings.instance().isHidePhoneNumber() && username == null) {
+          phone = String.valueOf(userId);
+        } else if (Settings.instance().needHidePhoneNumber()) {
           phone = Strings.replaceNumbers(Strings.formatPhone(account.getPhoneNumber()));
         } else {
           phone = Strings.formatPhone(account.getPhoneNumber());
