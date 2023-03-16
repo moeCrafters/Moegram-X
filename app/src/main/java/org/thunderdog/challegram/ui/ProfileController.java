@@ -154,6 +154,8 @@ import me.vkryl.td.ChatId;
 import me.vkryl.td.Td;
 import me.vkryl.td.TdConstants;
 
+import moe.kirao.mgx.MoexSettings;
+
 public class ProfileController extends ViewController<ProfileController.Args> implements
   Menu,
   MoreDelegate,
@@ -1659,11 +1661,15 @@ public class ProfileController extends ViewController<ProfileController.Args> im
         final int itemId = item.getId();
         if (itemId == R.id.btn_useExplicitDice) {
           view.getToggler().setRadioEnabled(Settings.instance().getNewSetting(item.getLongId()), isUpdate);
+        } else if (R.id.btn_chatId) {
+          view.setData("" + user.id);
         } else if (itemId == R.id.btn_username) {
           view.setName(getUsernameName());
           view.setData(getUsernameData());
         } else if (itemId == R.id.btn_phone) {
-          if (tdlib.isSelfUserId(user.id) && Settings.instance().needHidePhoneNumber()) {
+          if (tdlib.isSelfUserId(user.id) && MoexSettings.instance().isHidePhoneNumber()) {
+            view.setData(R.string.PhoneHidden);
+          } else if (tdlib.isSelfUserId(user.id) && Settings.instance().needHidePhoneNumber()) {
             view.setData(Strings.replaceNumbers(Strings.formatPhone(user.phoneNumber)));
           } else if (!StringUtils.isEmpty(user.phoneNumber)) {
             view.setData(Strings.formatPhone(user.phoneNumber));
@@ -2285,6 +2291,10 @@ public class ProfileController extends ViewController<ProfileController.Args> im
     return new ListItem(ListItem.TYPE_INFO_MULTILINE, R.id.btn_description, R.drawable.baseline_info_24, isUserMode() && !TD.isBot(user) ? R.string.UserBio : R.string.Description);
   }
 
+  private ListItem newChatIdItem () {
+        return new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_chatId, R.drawable.baseline_fingerprint_24, R.string.ChatId, false);
+  }
+
   private ListItem newEncryptionKeyItem () {
     return new ListItem(ListItem.TYPE_VALUED_SETTING, R.id.btn_encryptionKey, R.drawable.baseline_vpn_key_24, R.string.EncryptionKey);
   }
@@ -2305,6 +2315,13 @@ public class ProfileController extends ViewController<ProfileController.Args> im
         items.add(usernameItem);
         addedCount++;
       }
+    }
+
+    final ListItem chatIdItem = newChatIdItem();
+    if (MoexSettings.instance().isShowIdProfile() && chatIdItem != null) {
+      if (addedCount != 0) items.add(new ListItem(ListItem.TYPE_SEPARATOR));
+      items.add(chatIdItem);
+      addedCount++;
     }
 
     if (TD.isBot(user)) {
@@ -4487,6 +4504,19 @@ public class ProfileController extends ViewController<ProfileController.Args> im
       tdlib.ui().handleProfileClick(this, v, v.getId(), user, false);
     } else if (viewId == R.id.btn_useExplicitDice) {
       Settings.instance().setNewSetting(((ListItem) v.getTag()).getLongId(), baseAdapter.toggleView(v));
+    } else if (viewId == R.id.btn_chatId) {
+      IntList ids = new IntList(1);
+      StringList strings = new StringList(1);
+      IntList icons = new IntList(1);
+
+      ids.append(R.id.btn_copyText);
+      strings.append(R.string.Copy);
+      icons.append(R.drawable.baseline_content_copy_24);
+
+      showOptions("" + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
+        UI.copyText("" + user.id, R.string.CopiedText);
+        return true;
+      });
     } else if (viewId == R.id.btn_username) {
       boolean canSetUsername = supergroupFull != null && supergroupFull.canSetUsername;
       boolean canInviteUsers = chat != null && tdlib.canManageInviteLinks(chat);
