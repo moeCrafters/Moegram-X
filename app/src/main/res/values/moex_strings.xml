@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+  <string name="MoexSettings">Moegram X options</string>
+  <string name="GeneralMoexSettings">General</string>
+  <string name="InterfaceMoexSettings">Interface</string>
+  <string name="ChatsMoexSettings">Chats</string>
+  <string name="MoexLinks">Links</string>
+  <string name="MoexChannelText">Channel</string>
+  <string name="MoexChatText">Chat</string>
+  <string name="MoexUpdatesText">Updates</string>
+  <string name="MoexSourceText">Source</string>
+  <string name="MoexCategories">Categories</string>
+  <string name="MoexChannelLink">https://t.me/moegramx</string>
+  <string name="MoexChatLink">https://t.me/moe_chat</string>
+  <string name="MoexUpdatesLink">https://t.me/moex_log</string>
+  <string name="MoexSourceLink">https://github.com/jplie/Moegram-X</string>
+  <string name="MoexGeneralSettings">General options</string>
+  <string name="MoexInterfaceSettings">Interface options</string>
+  <string name="MoexHideButtons">Message panel</string>
+  <string name="DisableCommandsButton">Hide Commands Button</string>
+  <string name="DisableCameraButton">Hide Camera Button</string>
+  <string name="DisableRecordButton">Hide Record Button</string>
+  <string name="moexNews">Moegram news channel</string>
+  <string name="MoexChatsSettings">Chats options</string>
+  <string name="RecentStickersCount">Recent Stickers Count</string>
+  <string name="MoexStickersCount">Stickers</string>
+  <string name="DisableStickerTimestamp">Hide Time on Stickers</string>
+  <string name="MoexNews">https://t.me/moegramx</string>
+  <string name="DrawerOptions">Drawer options</string>
+  <string name="hidePhoneNumber">Hide Phone Number</string>
+  <string name="EnableFeatures">Enable Feature toggles</string>
+  <string name="FeaturesButtonInfo">Show experimental settings button in Drawer</string>
+  <string name="ExperimentalOptions">Experimental options</string>
+  <string name="PhoneHidden">Phone hidden</string>
+  <string name="ChatId">ID</string>
+  <string name="showIdProfile">Show User ID in Profile</string>
+  <string name="DisableSendAsButton">Hide SendAs Channel Button</string>
+</resources>
