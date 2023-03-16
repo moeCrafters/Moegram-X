@@ -92,6 +92,7 @@ import me.vkryl.core.StringUtils;
 import me.vkryl.core.collection.IntList;
 import me.vkryl.core.lambda.CancellableRunnable;
 import me.vkryl.td.ChatId;
+import moe.kirao.mgx.MoexSettings;
 
 public class DrawerController extends ViewController<Void> implements View.OnClickListener, Settings.ProxyChangeListener, GlobalAccountListener, GlobalCountersListener, BaseView.CustomControllerProvider, BaseView.ActionListProvider, View.OnLongClickListener, TdlibSettingsManager.NotificationProblemListener, TdlibOptionListener, SessionListener, GlobalTokenStateListener {
   private int currentWidth, shadowWidth;
@@ -276,7 +277,7 @@ public class DrawerController extends ViewController<Void> implements View.OnCli
       items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
       items.add(new ListItem(ListItem.TYPE_DRAWER_ITEM, R.id.btn_reportBug, R.drawable.baseline_bug_report_24, Test.CLICK_NAME, false));
     }
-    if (BuildConfig.EXPERIMENTAL) {
+    if (MoexSettings.instance().isEnableFeaturesButton() || BuildConfig.EXPERIMENTAL) {
       items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
       items.add(new ListItem(ListItem.TYPE_DRAWER_ITEM, R.id.btn_featureToggles, R.drawable.outline_toggle_on_24, "Feature Toggles", false));
     }

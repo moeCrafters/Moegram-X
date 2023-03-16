@@ -48,6 +48,8 @@ import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.collection.LongSparseArray;
 
+import moe.kirao.mgx.MoexSettings;
+
 import org.drinkless.tdlib.Client;
 import org.drinkless.tdlib.TdApi;
 import org.drinkmore.Tracer;
@@ -3608,6 +3610,9 @@ public abstract class TGMessage implements InvalidateContentProvider, TdlibDeleg
 
     final boolean isSending = isSending();
     final boolean isFailed = isFailed();
+
+    final boolean isMsgSticker = msg.content.getConstructor() == TdApi.MessageSticker.CONSTRUCTOR;
+    final boolean isDisableStickerTimestamp = MoexSettings.instance().isDisableStickerTimestamp();
 
     boolean reverseOrder;
 
