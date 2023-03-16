@@ -90,6 +90,8 @@ import me.vkryl.core.StringUtils;
 import me.vkryl.core.collection.IntList;
 import me.vkryl.core.lambda.CancellableRunnable;
 import me.vkryl.td.Td;
+import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.ui.SettingsMoexController;
 
 public class SettingsController extends ViewController<Void> implements
   View.OnClickListener, ComplexHeaderView.Callback,
@@ -643,6 +645,8 @@ public class SettingsController extends ViewController<Void> implements
 
     checkErrors(false);
 
+    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_moexSettings, R.drawable.templarian_baseline_flask_24, R.string.MoexSettings));
+    items.add(new ListItem(ListItem.TYPE_SEPARATOR));
     items.add(new ListItem(notificationErrorDescriptionRes != 0 ? ListItem.TYPE_VALUED_SETTING_COMPACT : ListItem.TYPE_SETTING, R.id.btn_notificationSettings, R.drawable.baseline_notifications_24, R.string.Notifications));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR));
     items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_chatSettings, R.drawable.baseline_data_usage_24, R.string.DataSettings));
@@ -659,15 +663,7 @@ public class SettingsController extends ViewController<Void> implements
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
-    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_help, R.drawable.baseline_live_help_24, R.string.AskAQuestion));
-    items.add(new ListItem(ListItem.TYPE_SEPARATOR));
-    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_faq, R.drawable.baseline_help_24, R.string.TelegramFAQ));
-    items.add(new ListItem(ListItem.TYPE_SEPARATOR));
-    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_privacyPolicy, R.drawable.baseline_policy_24, R.string.PrivacyPolicy));
-    items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
-
-    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
-    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_checkUpdates, R.drawable.baseline_google_play_24, U.isAppSideLoaded() ? R.string.AppOnGooglePlay : R.string.CheckForUpdates));
+    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_checkUpdates, R.drawable.baseline_casino_24, U.isAppSideLoaded() ? R.string.moexNews : R.string.CheckForUpdates));
     if (!U.isAppSideLoaded()) {
       items.add(new ListItem(ListItem.TYPE_SEPARATOR));
       items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_subscribeToBeta, R.drawable.templarian_baseline_flask_24, R.string.SubscribeToBeta));
@@ -921,7 +917,9 @@ public class SettingsController extends ViewController<Void> implements
     String displayPhoneNumber;
     if (user != null) {
       displayPhoneNumber = originalPhoneNumber = Strings.formatPhone(user.phoneNumber);
-      if (Settings.instance().needHidePhoneNumber()) {
+      if (MoexSettings.instance().isHidePhoneNumber()) {
+        displayPhoneNumber = "Mobile hidden";
+      } else if (Settings.instance().needHidePhoneNumber()) {
         displayPhoneNumber = Strings.replaceNumbers(displayPhoneNumber);
       }
     } else {
@@ -960,8 +958,8 @@ public class SettingsController extends ViewController<Void> implements
     
   }
 
-  private void viewGooglePlay () {
-    tdlib.ui().openUrl(this, BuildConfig.MARKET_URL, new TdlibUi.UrlOpenParameters().disableInstantView());
+  private void viewMoexNews () {
+    tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexNews), new TdlibUi.UrlOpenParameters().forceInstantView());
   }
 
   private void viewSourceCode (boolean isTdlib) {
@@ -1006,8 +1004,12 @@ public class SettingsController extends ViewController<Void> implements
         navigateTo(new SettingsSessionsController(context, tdlib));
         break;
       }
+      case R.id.btn_moexSettings: {
+        navigateTo(new SettingsMoexController(context, tdlib));
+        break;
+      }
       case R.id.btn_checkUpdates: {
-        viewGooglePlay();
+        viewMoexNews();
         break;
       }
       case R.id.btn_subscribeToBeta: {
