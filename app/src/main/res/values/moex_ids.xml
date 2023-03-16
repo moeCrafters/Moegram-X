@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <item name="btn_GeneralMoexSettings" type="id" />
+  <item name="btn_InterfaceMoexSettings" type="id" />
+  <item name="btn_ChatsMoexSettings" type="id" />
+  <item name="controller_moexSettings" type="id" />
+  <item name="btn_moexChannelLink" type="id" />
+  <item name="btn_moexChatLink" type="id" />
+  <item name="btn_moexUpdatesLink" type="id" />
+  <item name="btn_moexSourceLink" type="id" />
+  <item name="btn_recentStickersCount" type="id" />
+  <item name="btn_disableCameraButton" type="id" />
+  <item name="btn_disableRecordButton" type="id" />
+  <item name="btn_disableCommandsButton" type="id" />
+  <item name="btn_moexSettings" type="id" />
+  <item name="btn_recentStickers20" type="id" />
+  <item name="btn_recentStickers40" type="id" />
+  <item name="btn_recentStickers60" type="id" />
+  <item name="btn_recentStickers80" type="id" />
+  <item name="btn_recentStickers100" type="id" />
+  <item name="btn_disableStickerTimestamp" type="id" />
+  <item name="btn_chatId" type="id" />
+  <item name="btn_hidePhone" type="id" />
+  <item name="btn_enableFeaturesButton" type="id" />
+  <item name="btn_showIdProfile" type="id" />
+  <item name="btn_disableSendAsButton" type="id" />
+</resources>
