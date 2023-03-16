@@ -247,7 +247,7 @@ public class MoexSettings {
     return getBoolean(KEY_SHOW_ID_PROFILE, false);
     }
 
-  public void  toggleShowIdProfile () {
+  public void toggleShowIdProfile () {
     putBoolean(KEY_SHOW_ID_PROFILE, !isShowIdProfile());
     }
 
