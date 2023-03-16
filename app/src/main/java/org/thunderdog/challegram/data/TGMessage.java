@@ -48,6 +48,8 @@ import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.collection.LongSparseArray;
 
+import moe.kirao.mgx.MoexSettings;
+
 import org.drinkless.td.libcore.telegram.Client;
 import org.drinkless.td.libcore.telegram.TdApi;
 import org.drinkmore.Tracer;
@@ -3545,6 +3547,9 @@ public abstract class TGMessage implements InvalidateContentProvider, TdlibDeleg
 
     final boolean isSending = isSending();
     final boolean isFailed = isFailed();
+
+    final boolean isMsgSticker = msg.content.getConstructor() == TdApi.MessageSticker.CONSTRUCTOR;
+    final boolean isDisableStickerTimestamp = MoexSettings.instance().isDisableStickerTimestamp();
 
     boolean reverseOrder;
 

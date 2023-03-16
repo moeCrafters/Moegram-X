@@ -68,6 +68,7 @@ import me.vkryl.core.collection.IntList;
 import me.vkryl.core.collection.LongList;
 import me.vkryl.core.collection.LongSparseIntArray;
 import me.vkryl.core.lambda.CancellableRunnable;
+import moe.kirao.mgx.MoexSettings;
 
 public class EmojiMediaListController extends ViewController<EmojiLayout> implements
   Client.ResultHandler,
@@ -79,7 +80,8 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
   MediaGifsAdapter.Callback,
   TGStickerSetInfo.ViewCallback,
   ClickHelper.Delegate,
-  ForceTouchView.ActionListener {
+  ForceTouchView.ActionListener,
+  MoexSettings.SettingsChangeListener {
   public EmojiMediaListController (Context context, Tdlib tdlib) {
     super(context, tdlib);
   }
@@ -102,6 +104,13 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
   private CustomRecyclerView stickersView;
   private RecyclerView gifsView;
   private RecyclerView hotView;
+
+  @Override
+  public void onSettingsChanged (String key, Object newSettings, Object oldSettings) {
+    if (key.equals(MoexSettings.KEY_RECENT_STICKERS_COUNT)) {
+      reloadStickers();
+    }
+  }
 
   @Override
   protected View onCreateView (Context context) {
@@ -148,6 +157,8 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
     loadStickers(); // to show sections
     loadTrending(0, 20, 0); // to show blue badge?
 
+    MoexSettings.instance().addNewSettingsListener(this);
+    
     return contentView;
   }
 
@@ -1044,7 +1055,7 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
   }
 
   private int getMaxCount (boolean areFavorite) {
-    return areFavorite ? tdlib.favoriteStickersMaxCount() : 20;
+    return areFavorite ? tdlib.favoriteStickersMaxCount() : MoexSettings.instance().getRecentStickersCount();
   }
 
   private void processStickersImpl (final TdApi.Object object, final boolean areFavorite) {
