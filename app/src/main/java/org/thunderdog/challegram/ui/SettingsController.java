@@ -922,7 +922,7 @@ public class SettingsController extends ViewController<Void> implements
     if (user != null) {
       displayPhoneNumber = originalPhoneNumber = Strings.formatPhone(user.phoneNumber);
       if (MoexConfig.hidePhoneNumber) {
-        displayPhoneNumber = "Mobile hidden";
+        displayPhoneNumber = Lang.getString(R.string.MobileHidden);
       } else if (Settings.instance().needHidePhoneNumber()) {
         displayPhoneNumber = Strings.replaceNumbers(displayPhoneNumber);
       }
