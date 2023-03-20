@@ -2,7 +2,7 @@
 <resources>
   <string name="language_continueInLanguage">Continue in English</string>
 
-  <string name="Page1Title">Moegram X</string>
+  <string name="Page1Title">Telegram X</string>
   <string name="Page2Title">Fast</string>
   <string name="Page3Title">Free</string>
   <string name="Page4Title">Powerful</string>
@@ -22,7 +22,15 @@
   <string name="Connected">Connected</string>
   <string name="ConnectingToProxy">Connecting to proxy…</string>
 
-  <string name="AppNameAndVersion">Moegram X %1$s</string>
+  <string name="ConnectingWithProxy">Connecting with proxy…</string>
+  <string name="Initializing">Starting up…</string>
+  <string name="network_Lookup">Finding better route…</string>
+  <string name="network_LookupAttempt">Trying direct connection…</string>
+  <string name="network_LookupAttemptProxy">Trying another proxy…</string>
+  <string name="network_LookupFailed">No routes found, connecting directly…</string>
+  <string name="network_LookupFailedProxy">No routes found, using last proxy…</string>
+
+  <string name="AppNameAndVersion">Telegram X %1$s</string>
   <string name="language_code">en</string>
   <string name="language_emoji">&#127482;&#127480;</string>
   <string name="language_name">English</string>
@@ -1558,6 +1566,8 @@
   <string name="UseProxyServer">Server</string>
   <string name="UseProxyPort">Port</string>
   <string name="ProxySettings">Proxy settings</string>
+  <string name="ProxyAutoSwitch">Switch automatically</string>
+  <string name="ProxyAutoSwitchHint">Automatically try different connections when app takes too long to connect. This may increase time needed to establish connection on weak networks.</string>
   <string name="EnableProxyAlertTitle">Are you sure you want to enable this proxy?</string>
   <string name="EnableProxyAlertHint">You can change your proxy server later in Settings &gt; Data and Storage.</string>
   <string name="EnableProxyAlertHintMtproto">This proxy may display a sponsored channel in your chat list. This doesn\'t reveal any of your Telegram traffic.</string>
@@ -4150,7 +4160,7 @@
   <string name="AppUpdateAvailablePromptConfirm">Download and install</string>
 
   <string name="CommitSignature">**Commit**: [%1$s](%2$s)</string>
-  <string name="AppSignature">**Moegram X** `%1$s`</string>
+  <string name="AppSignature">**Telegram X** `%1$s`</string>
   <string name="CreatedOn">**Created**: %1$s</string>
   <string name="SourceCode">Source Code</string>
 
