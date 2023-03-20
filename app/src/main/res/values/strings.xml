@@ -2,7 +2,7 @@
 <resources>
   <string name="language_continueInLanguage">Continue in English</string>
 
-  <string name="Page1Title">Telegram X</string>
+  <string name="Page1Title">Moegram X</string>
   <string name="Page2Title">Fast</string>
   <string name="Page3Title">Free</string>
   <string name="Page4Title">Powerful</string>
@@ -30,7 +30,7 @@
   <string name="network_LookupFailed">No routes found, connecting directly…</string>
   <string name="network_LookupFailedProxy">No routes found, using last proxy…</string>
 
-  <string name="AppNameAndVersion">Telegram X %1$s</string>
+  <string name="AppNameAndVersion">Moegram X %1$s</string>
   <string name="language_code">en</string>
   <string name="language_emoji">&#127482;&#127480;</string>
   <string name="language_name">English</string>
@@ -4160,7 +4160,7 @@
   <string name="AppUpdateAvailablePromptConfirm">Download and install</string>
 
   <string name="CommitSignature">**Commit**: [%1$s](%2$s)</string>
-  <string name="AppSignature">**Telegram X** `%1$s`</string>
+  <string name="AppSignature">**Moegram X** `%1$s`</string>
   <string name="CreatedOn">**Created**: %1$s</string>
   <string name="SourceCode">Source Code</string>
 

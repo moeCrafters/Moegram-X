@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
   <string name="MoexSettings">Moegram X options</string>
   <string name="GeneralMoexSettings">General</string>
   <string name="InterfaceMoexSettings">Interface</string>
@@ -36,4 +35,8 @@
   <string name="ChatId">ID</string>
   <string name="showIdProfile">Show User ID in Profile</string>
   <string name="DisableSendAsButton">Hide SendAs Channel Button</string>
+  <string name="MobileHidden">Mobile Hidden</string>
+  <string name="MoexAbout">About</string>
+  <string name="MoexAboutText">**Moegram X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
+  <string name="MoexVer">Moegram X v1.1-release</string>
 </resources>
