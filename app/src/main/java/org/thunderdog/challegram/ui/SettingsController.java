@@ -90,7 +90,7 @@ import me.vkryl.core.StringUtils;
 import me.vkryl.core.collection.IntList;
 import me.vkryl.core.lambda.CancellableRunnable;
 import me.vkryl.td.Td;
-import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.MoexConfig;
 import moe.kirao.mgx.ui.SettingsMoexController;
 
 public class SettingsController extends ViewController<Void> implements
@@ -921,7 +921,7 @@ public class SettingsController extends ViewController<Void> implements
     String displayPhoneNumber;
     if (user != null) {
       displayPhoneNumber = originalPhoneNumber = Strings.formatPhone(user.phoneNumber);
-      if (MoexSettings.instance().isHidePhoneNumber()) {
+      if (MoexConfig.hidePhoneNumber) {
         displayPhoneNumber = "Mobile hidden";
       } else if (Settings.instance().needHidePhoneNumber()) {
         displayPhoneNumber = Strings.replaceNumbers(displayPhoneNumber);

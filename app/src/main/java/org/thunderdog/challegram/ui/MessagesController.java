@@ -273,7 +273,7 @@ import me.vkryl.td.ChatId;
 import me.vkryl.td.MessageId;
 import me.vkryl.td.Td;
 import me.vkryl.td.TdConstants;
-import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.MoexConfig;
 
 public class MessagesController extends ViewController<MessagesController.Arguments> implements
   Menu, Unlockable, View.OnClickListener,
@@ -293,7 +293,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
   RecordAudioVideoController.RecordStateListeners,
   ViewPager.OnPageChangeListener, ViewPagerTopView.OnItemClickListener,
   TGMessage.SelectableDelegate, GlobalAccountListener, EmojiToneHelper.Delegate, ComplexHeaderView.Callback, LiveLocationHelper.Callback, CreatePollController.Callback,
-  HapticMenuHelper.Provider, HapticMenuHelper.OnItemClickListener, TdlibSettingsManager.DismissRequestsListener, MoexSettings.SettingsChangeListener {
+  HapticMenuHelper.Provider, HapticMenuHelper.OnItemClickListener, TdlibSettingsManager.DismissRequestsListener, MoexConfig.SettingsChangeListener {
   private boolean reuseEnabled;
   private boolean destroyInstance;
 
@@ -572,7 +572,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
   @Override
   public void onSettingsChanged (String key, Object newSettings, Object oldSettings) {
     switch (key) {
-      case MoexSettings.KEY_DISABLE_CAMERA_BUTTON:
+      case MoexConfig.KEY_DISABLE_CAMERA_BUTTON:
         if (cameraButton == null) {
           return;
         }
@@ -583,7 +583,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
           attachButtons.addView(cameraButton);
         }
         break;
-      case MoexSettings.KEY_DISABLE_RECORD_BUTTON:
+      case MoexConfig.KEY_DISABLE_RECORD_BUTTON:
         if (recordButton == null) {
           return;
         }
@@ -594,7 +594,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
           attachButtons.addView(recordButton);
         }
         break;
-      case MoexSettings.KEY_DISABLE_COMMANDS_BUTTON:
+      case MoexConfig.KEY_DISABLE_COMMANDS_BUTTON:
         if (commandButton == null) {
           return;
         }
@@ -604,7 +604,8 @@ public class MessagesController extends ViewController<MessagesController.Argume
         } else {
           attachButtons.addView(commandButton);
         }
-      case MoexSettings.KEY_DISABLE_SENDAS_BUTTON:
+        break;
+      case MoexConfig.KEY_DISABLE_SEND_AS_BUTTON:
         if (messageSenderButton == null) {
           return;
         }
@@ -614,6 +615,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
         } else {
           contentView.addView(messageSenderButton);
         }
+        break;
     }
   }
 
@@ -1183,7 +1185,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
     addThemeInvalidateListener(recordButton);
     recordButton.setLayoutParams(lp);
 
-    if (!MoexSettings.instance().isDisableCommandsButton()) {
+    if (!MoexConfig.disableCommandsButton) {
       attachButtons.addView(commandButton);
     }
     if (silentButton != null) {
@@ -1192,11 +1194,11 @@ public class MessagesController extends ViewController<MessagesController.Argume
     if (scheduleButton != null) {
       attachButtons.addView(scheduleButton);
     }
-    if (!MoexSettings.instance().isDisableCameraButton() && cameraButton != null) {
+    if (!MoexConfig.disableCameraButton && cameraButton != null) {
       attachButtons.addView(cameraButton);
     }
     attachButtons.addView(mediaButton);
-    if (!MoexSettings.instance().isDisableRecordButton()) {
+    if (!MoexConfig.disableRecordButton) {
       attachButtons.addView(recordButton);
     }
     attachButtons.updatePivot();
@@ -1428,7 +1430,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       contentView.addView(emojiButton);
       contentView.addView(attachButtons);
       contentView.addView(sendButton);
-      if (!MoexSettings.instance().isDisableSendAsButton()) {
+      if (!MoexConfig.disableSendAsButton) {
         contentView.addView(messageSenderButton);
       }
 
@@ -1446,7 +1448,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
 
     updateView();
 
-    MoexSettings.instance().addNewSettingsListener(this);
+    MoexConfig.instance().addNewSettingsListener(this);
     TGLegacyManager.instance().addEmojiListener(this);
 
     if (needTabs()) {

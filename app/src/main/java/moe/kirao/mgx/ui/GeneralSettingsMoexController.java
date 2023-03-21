@@ -4,14 +4,13 @@ import android.content.Context;
 import android.util.SparseIntArray;
 import android.view.View;
 
-import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.MoexConfig;
 
 import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
 import org.thunderdog.challegram.navigation.ViewController;
 import org.thunderdog.challegram.telegram.Tdlib;
-import org.thunderdog.challegram.telegram.TdlibUi;
 import org.thunderdog.challegram.ui.ListItem;
 import org.thunderdog.challegram.ui.RecyclerViewController;
 import org.thunderdog.challegram.ui.SettingsAdapter;
@@ -34,15 +33,15 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     int id = v.getId();
     switch (id) {
       case R.id.btn_hidePhone:
-        MoexSettings.instance().toggleHidePhoneNumber();
+        MoexConfig.instance().toggleHidePhoneNumber();
         adapter.updateValuedSettingById(R.id.btn_hidePhone);
         break;
       case R.id.btn_enableFeaturesButton:
-        MoexSettings.instance().toggleEnableFeaturesButton();
+        MoexConfig.instance().toggleEnableFeaturesButton();
         adapter.updateValuedSettingById(R.id.btn_enableFeaturesButton);
         break;
       case R.id.btn_showIdProfile:
-        MoexSettings.instance().toggleShowIdProfile();
+        MoexConfig.instance().toggleShowIdProfile();
         adapter.updateValuedSettingById(R.id.btn_showIdProfile);
         break;
     }
@@ -62,13 +61,13 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
         view.setDrawModifier(item.getDrawModifier());
         switch (item.getId()) {
           case R.id.btn_hidePhone:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isHidePhoneNumber(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.hidePhoneNumber, isUpdate);
             break;
           case R.id.btn_enableFeaturesButton:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isEnableFeaturesButton(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.enableTestFeatures, isUpdate);
             break;
           case R.id.btn_showIdProfile:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isShowIdProfile(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.showId, isUpdate);
             break;
         }
       }
