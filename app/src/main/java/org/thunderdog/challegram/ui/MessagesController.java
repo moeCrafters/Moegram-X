@@ -125,6 +125,7 @@ import org.thunderdog.challegram.component.chat.WallpaperRecyclerView;
 import org.thunderdog.challegram.component.chat.WallpaperView;
 import org.thunderdog.challegram.component.popups.MessageSeenController;
 import org.thunderdog.challegram.component.popups.ModernActionedLayout;
+import org.thunderdog.challegram.component.sticker.StickerSmallView;
 import org.thunderdog.challegram.component.sticker.TGStickerObj;
 import org.thunderdog.challegram.config.Config;
 import org.thunderdog.challegram.core.Background;
@@ -185,6 +186,7 @@ import org.thunderdog.challegram.player.RoundVideoController;
 import org.thunderdog.challegram.support.RippleSupport;
 import org.thunderdog.challegram.support.ViewSupport;
 import org.thunderdog.challegram.telegram.ChatListener;
+import org.thunderdog.challegram.telegram.EmojiMediaType;
 import org.thunderdog.challegram.telegram.GlobalAccountListener;
 import org.thunderdog.challegram.telegram.ListManager;
 import org.thunderdog.challegram.telegram.MessageThreadListener;
@@ -7942,6 +7944,8 @@ public class MessagesController extends ViewController<MessagesController.Argume
     setStickersVisible(false);
   }
 
+  private boolean choosingSuggestionSent;
+
   public void showStickerSuggestions (@Nullable ArrayList<TGStickerObj> stickers, boolean isMore) {
     if (stickers == null || stickers.isEmpty()) {
       if (!isMore) {
@@ -7965,7 +7969,30 @@ public class MessagesController extends ViewController<MessagesController.Argume
       stickerSuggestionsWrap.setLayoutParams(params);
 
       RecyclerView.LayoutManager manager = new LinearLayoutManager(context(), LinearLayoutManager.HORIZONTAL, false);
-      stickerSuggestionAdapter = new StickerSuggestionAdapter(this, this, manager, this);
+      stickerSuggestionAdapter = new StickerSuggestionAdapter(this, this, manager, this) {
+        @Override
+        public void onStickerPreviewOpened (StickerSmallView view, TGStickerObj sticker) {
+          notifyChoosingEmoji(EmojiMediaType.STICKER, true);
+          if (areStickersVisible) {
+            choosingSuggestionSent = true;
+          }
+        }
+
+        @Override
+        public void onStickerPreviewChanged (StickerSmallView view, TGStickerObj otherOrThisSticker) {
+          notifyChoosingEmoji(EmojiMediaType.STICKER, true);
+          if (areStickersVisible) {
+            choosingSuggestionSent = true;
+          }
+        }
+
+        @Override
+        public void onStickerPreviewClosed (StickerSmallView view, TGStickerObj thisSticker) {
+          if (!choosingSuggestionSent) {
+            notifyChoosingEmoji(EmojiMediaType.STICKER, false);
+          }
+        }
+      };
       stickerSuggestionAdapter.setStickers(stickers);
       stickerSuggestionsView = new RecyclerView(context()) {
         @Override
@@ -7976,6 +8003,23 @@ public class MessagesController extends ViewController<MessagesController.Argume
       stickerSuggestionsView.setItemAnimator(null);
       stickerSuggestionsView.setOverScrollMode(Config.HAS_NICE_OVER_SCROLL_EFFECT ? View.OVER_SCROLL_IF_CONTENT_SCROLLS : View.OVER_SCROLL_NEVER);
       stickerSuggestionsView.setAdapter(stickerSuggestionAdapter);
+      stickerSuggestionsView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+        /*@Override
+        public void onScrollStateChanged (@NonNull RecyclerView recyclerView, int newState) {
+          if (newState == RecyclerView.SCROLL_STATE_DRAGGING) {
+            notifyChoosingEmoji(EmojiMediaType.STICKER, true);
+            choosingSuggestionSent = true;
+          }
+        }*/
+
+        @Override
+        public void onScrolled (@NonNull RecyclerView recyclerView, int dx, int dy) {
+          if (dx != 0) {
+            notifyChoosingEmoji(EmojiMediaType.STICKER, true);
+            choosingSuggestionSent = true;
+          }
+        }
+      });
       stickerSuggestionsView.setLayoutManager(manager);
       stickerSuggestionsView.setLayoutParams(FrameLayoutFix.newParams(ViewGroup.LayoutParams.WRAP_CONTENT, stickersListTotalHeight));
       stickerSuggestionsWrap.addView(stickerSuggestionsView);
@@ -8007,7 +8051,12 @@ public class MessagesController extends ViewController<MessagesController.Argume
   private void setStickersVisible (boolean areVisible) {
     if (this.areStickersVisible != areVisible) {
       this.areStickersVisible = areVisible;
-
+      if (choosingSuggestionSent) {
+        if (!areVisible) {
+          notifyChoosingEmoji(EmojiMediaType.STICKER, false);
+        }
+        choosingSuggestionSent = false;
+      }
       boolean onLayout = stickerSuggestionsWrap.getParent() == null && areVisible;
       if (onLayout) {
         contentView.addView(stickerSuggestionsWrap);
@@ -8339,13 +8388,28 @@ public class MessagesController extends ViewController<MessagesController.Argume
     }
   }
 
+  @Override
+  public void onSectionSwitched (EmojiLayout layout, int section, int prevSection) {
+    if (emojiShown) {
+      if (section != prevSection) {
+        notifyChoosingEmoji(prevSection, false);
+      }
+      updateEmojiStatus();
+    }
+  }
+
+  private void updateEmojiStatus () {
+    @EmojiMediaType int type = emojiLayout != null ? emojiLayout.getCurrentEmojiSection() : EmojiLayout.getTargetSection();
+    notifyChoosingEmoji(type, emojiShown);
+  }
+
   private void setEmojiShown (boolean emojiShown, boolean animated) {
     if (this.emojiShown != emojiShown) {
       this.emojiShown = emojiShown;
       if (emojiShown) {
         hideSoftwareKeyboard();
       }
-      // recordButton.setInSearchMode(emojiShown, animated);
+      updateEmojiStatus();
     }
   }
 
@@ -9760,6 +9824,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
   }
 
   private SparseIntArray actions;
+  private boolean lastActionCancelled;
 
   public void setChatAction (@TdApi.ChatAction.Constructors int action, boolean set, boolean force) {
     if (chat == null) {
@@ -9782,14 +9847,16 @@ public class MessagesController extends ViewController<MessagesController.Argume
     }
     if (set) {
       int time = (int) (SystemClock.uptimeMillis() / 1000l);
-      if (time - actions.get(action) >= 4 || force) {
+      if (time - actions.get(action) >= 4 || force || lastActionCancelled) {
         actions.put(action, time);
         tdlib.client().send(new TdApi.SendChatAction(chat.id, messageThreadId, Td.constructChatAction(action)), handler);
+        lastActionCancelled = false;
       }
     } else {
       if (actions.get(action, 0) != 0) {
         actions.delete(action);
         tdlib.client().send(new TdApi.SendChatAction(chat.id, messageThreadId, new TdApi.ChatActionCancel()), handler);
+        lastActionCancelled = true;
       }
     }
   }
@@ -9797,6 +9864,27 @@ public class MessagesController extends ViewController<MessagesController.Argume
   public void setTyping (boolean isTyping) {
     if (chat != null) {
       setChatAction(TdApi.ChatActionTyping.CONSTRUCTOR, isTyping, false);
+    }
+  }
+
+  @Override
+  public void onSectionInteracted (EmojiLayout layout, int emojiType, boolean interactionFinished) {
+    notifyChoosingEmoji(emojiType, !interactionFinished);
+  }
+
+  public void notifyChoosingEmoji (int emojiType, boolean isChoosingEmoji) {
+    if (chat != null) {
+      @TdApi.ChatAction.Constructors int action;
+      switch (emojiType) {
+        case EmojiMediaType.STICKER:
+          action = TdApi.ChatActionChoosingSticker.CONSTRUCTOR;
+          break;
+        case EmojiMediaType.EMOJI:
+        case EmojiMediaType.GIF:
+        default:
+          return;
+      }
+      setChatAction(action, isChoosingEmoji, false);
     }
   }
 
