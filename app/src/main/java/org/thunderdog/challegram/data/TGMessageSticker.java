@@ -51,6 +51,7 @@ import me.vkryl.core.collection.IntSet;
 import me.vkryl.core.lambda.FutureBool;
 import me.vkryl.td.Td;
 import me.vkryl.td.TdConstants;
+import moe.kirao.mgx.MoexConfig;
 
 public class TGMessageSticker extends TGMessage implements AnimatedEmojiListener {
   private TdApi.DiceStickers sticker;
@@ -160,9 +161,15 @@ public class TGMessageSticker extends TGMessage implements AnimatedEmojiListener
           previewReceiver.requestFile(null, preview);
         }
       }
+      int corners = 0;
+      if (MoexConfig.roundedStickers) {
+        corners = Screen.dp(6);
+      }
       if (isAnimated()) {
+        receiver.getGifReceiver(key).setRadius(corners);
         receiver.getGifReceiver(key).requestFile(animatedFile);
       } else {
+        receiver.getImageReceiver(key).setRadius(corners);
         receiver.getImageReceiver(key).requestFile(staticFile);
       }
     }
@@ -456,7 +463,7 @@ public class TGMessageSticker extends TGMessage implements AnimatedEmojiListener
 
   @Override
   protected int getBubbleTimePartOffsetY () {
-    return Screen.dp(4f);
+    return Screen.dp(3f);
   }
 
   @Override

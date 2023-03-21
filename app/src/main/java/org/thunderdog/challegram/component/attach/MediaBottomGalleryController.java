@@ -73,7 +73,7 @@ import me.vkryl.android.AnimatorUtils;
 import me.vkryl.android.widget.FrameLayoutFix;
 import me.vkryl.core.lambda.CancellableRunnable;
 import me.vkryl.td.Td;
-import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.MoexConfig;
 
 public class MediaBottomGalleryController extends MediaBottomBaseController<MediaBottomGalleryController.Arguments> implements Media.GalleryCallback, MediaGalleryAdapter.Callback, Menu, View.OnClickListener, MediaBottomGalleryBucketAdapter.Callback, MediaViewDelegate, MediaSelectDelegate, MediaSendDelegate {
   public static class Arguments {
@@ -226,7 +226,7 @@ public class MediaBottomGalleryController extends MediaBottomBaseController<Medi
       loadGalleryPhotos(null);
     }
 
-    if (MoexSettings.instance().isDisableCameraButton() || mediaLayout.needCameraButton()) {
+    if (MoexConfig.disableCameraButton || mediaLayout.needCameraButton()) {
       cameraBadgeView = new CircleCounterBadgeView(this, R.id.btn_camera, this::onCameraButtonClick, null);
       cameraBadgeView.init(R.drawable.deproko_baseline_camera_26, 48f, 4f, ColorId.circleButtonChat, ColorId.circleButtonChatIcon);
       cameraBadgeView.setLayoutParams(FrameLayoutFix.newParams(Screen.dp(CircleCounterBadgeView.BUTTON_WRAPPER_WIDTH), Screen.dp(74f), Gravity.BOTTOM | Gravity.RIGHT, 0, 0, Screen.dp(12), Screen.dp(12 + 60)));

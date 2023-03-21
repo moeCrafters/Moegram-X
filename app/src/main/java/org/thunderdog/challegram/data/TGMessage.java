@@ -48,7 +48,7 @@ import androidx.annotation.StringRes;
 import androidx.annotation.UiThread;
 import androidx.collection.LongSparseArray;
 
-import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.MoexConfig;
 
 import org.drinkless.tdlib.Client;
 import org.drinkless.tdlib.TdApi;
@@ -3612,7 +3612,7 @@ public abstract class TGMessage implements InvalidateContentProvider, TdlibDeleg
     final boolean isFailed = isFailed();
 
     final boolean isMsgSticker = msg.content.getConstructor() == TdApi.MessageSticker.CONSTRUCTOR;
-    final boolean isDisableStickerTimestamp = MoexSettings.instance().isDisableStickerTimestamp();
+    final boolean hideStickerTimestamp = MoexConfig.hideStickerTimestamp;
 
     boolean reverseOrder;
 
@@ -3626,12 +3626,13 @@ public abstract class TGMessage implements InvalidateContentProvider, TdlibDeleg
       startY -= commentButton.getAnimatedHeight(0, commentButton.getVisibility());
     }
 
-    if (backgroundColor != 0) {
-      startY -= Screen.dp(4f);
+    if (backgroundColor != 0 && !(isMsgSticker && hideStickerTimestamp)) {
+      startY -= Screen.dp(isMsgSticker ? 6f : 4f);
       RectF rectF = Paints.getRectF();
       int padding = Screen.dp(6f);
+      int rad = Screen.dp(MoexConfig.roundedStickers ? 6f : 12f);
       rectF.set(startX - padding, startY, startX + innerWidth + padding, startY + Screen.dp(21f));
-      c.drawRoundRect(rectF, Screen.dp(12f), Screen.dp(12f), Paints.fillingPaint(backgroundColor));
+      c.drawRoundRect(rectF, rad, rad, Paints.fillingPaint(backgroundColor));
       startY -= Screen.dp(1f);
     }
 
@@ -3682,21 +3683,21 @@ public abstract class TGMessage implements InvalidateContentProvider, TdlibDeleg
       startX += isTranslatedCounter.getScaledWidth(Screen.dp(COUNTER_ICON_MARGIN + COUNTER_ADD_MARGIN));
     }
 
-    if (time != null) {
+    if (time != null && !(isMsgSticker && hideStickerTimestamp)) {
       c.drawText(time, startX, startY + Screen.dp(15.5f), Paints.colorPaint(mTimeBubble(), textColor));
       startX += pTimeWidth;
     }
 
-    if (isOutgoingBubble() || (isSending && getViewCountMode() != VIEW_COUNT_MAIN)) {
+    if (!(isMsgSticker && hideStickerTimestamp) && (isOutgoingBubble() || (isSending && getViewCountMode() != VIEW_COUNT_MAIN))) {
       int top;
 
-      startX += Screen.dp(3.5f);
+      startX += Screen.dp(3f);
 
       if (isSending) {
         top = startY + Screen.dp(5f);
         startX += Screen.dp(1f);
       } else {
-        top = startY + Screen.dp(4.5f);
+        top = startY + Screen.dp(5f);
       }
 
       if (isFailed) {
