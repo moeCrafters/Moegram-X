@@ -15,6 +15,7 @@ obj
 
 /captures
 /local.properties
+keystore.properties
 
 libc++_shared.so
 app/google-services.json

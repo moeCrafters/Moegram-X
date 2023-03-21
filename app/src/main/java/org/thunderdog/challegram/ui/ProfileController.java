@@ -150,7 +150,7 @@ import me.vkryl.core.lambda.RunnableLong;
 import me.vkryl.td.ChatId;
 import me.vkryl.td.Td;
 import me.vkryl.td.TdConstants;
-import moe.kirao.mgx.MoexSettings;
+import moe.kirao.mgx.MoexConfig;
 
 public class ProfileController extends ViewController<ProfileController.Args> implements
   Menu,
@@ -1745,7 +1745,7 @@ public class ProfileController extends ViewController<ProfileController.Args> im
             break;
           }
           case R.id.btn_phone: {
-            if (tdlib.isSelfUserId(user.id) && MoexSettings.instance().isHidePhoneNumber()) {
+            if (tdlib.isSelfUserId(user.id) && MoexConfig.hidePhoneNumber) {
               view.setData(R.string.PhoneHidden);
             } else if (tdlib.isSelfUserId(user.id) && Settings.instance().needHidePhoneNumber()) {
               view.setData(Strings.replaceNumbers(Strings.formatPhone(user.phoneNumber)));
@@ -2436,7 +2436,7 @@ public class ProfileController extends ViewController<ProfileController.Args> im
     }
 
     final ListItem chatIdItem = newChatIdItem();
-    if (MoexSettings.instance().isShowIdProfile() && chatIdItem != null) {
+    if (MoexConfig.showId && chatIdItem != null) {
       if (addedCount != 0) items.add(new ListItem(ListItem.TYPE_SEPARATOR));
       items.add(chatIdItem);
       addedCount++;

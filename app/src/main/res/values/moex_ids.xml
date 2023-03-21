@@ -24,4 +24,5 @@
   <item name="btn_enableFeaturesButton" type="id" />
   <item name="btn_showIdProfile" type="id" />
   <item name="btn_disableSendAsButton" type="id" />
+  <item name="btn_roundedStickers" type="id" />
 </resources>

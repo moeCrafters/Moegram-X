@@ -4,6 +4,8 @@ import android.content.Context;
 import android.util.SparseIntArray;
 import android.view.View;
 
+import moe.kirao.mgx.MoexConfig;
+
 import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
@@ -15,8 +17,6 @@ import org.thunderdog.challegram.ui.SettingsAdapter;
 import org.thunderdog.challegram.v.CustomRecyclerView;
 
 import java.util.ArrayList;
-
-import moe.kirao.mgx.MoexSettings;
 
 public class InterfaceSettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener, ViewController.SettingsIntDelegate {
   private SettingsAdapter adapter;
@@ -33,19 +33,19 @@ public class InterfaceSettingsMoexController extends RecyclerViewController<Void
     int id = v.getId();
     switch (id) {
       case R.id.btn_disableCameraButton:
-        MoexSettings.instance().toggleDisableCameraButton();
+        MoexConfig.instance().toggleDisableCameraButton();
         adapter.updateValuedSettingById(R.id.btn_disableCameraButton);
         break;
       case R.id.btn_disableRecordButton:
-        MoexSettings.instance().toggleDisableRecordButton();
+        MoexConfig.instance().toggleDisableRecordButton();
         adapter.updateValuedSettingById(R.id.btn_disableRecordButton);
         break;
       case R.id.btn_disableCommandsButton:
-        MoexSettings.instance().toggleDisableCommandsButton();
+        MoexConfig.instance().toggleDisableCommandsButton();
         adapter.updateValuedSettingById(R.id.btn_disableCommandsButton);
         break;
       case R.id.btn_disableSendAsButton:
-        MoexSettings.instance().toggleDisableSendAsButton();
+        MoexConfig.instance().toggleDisableSendAsButton();
         adapter.updateValuedSettingById(R.id.btn_disableSendAsButton);
         break;
     }
@@ -65,16 +65,16 @@ public class InterfaceSettingsMoexController extends RecyclerViewController<Void
         view.setDrawModifier(item.getDrawModifier());
         switch (item.getId()) {
           case R.id.btn_disableCameraButton:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isDisableCameraButton(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.disableCameraButton, isUpdate);
             break;
           case R.id.btn_disableRecordButton:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isDisableRecordButton(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.disableRecordButton, isUpdate);
             break;
           case R.id.btn_disableCommandsButton:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isDisableCommandsButton(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.disableCommandsButton, isUpdate);
             break;
           case R.id.btn_disableSendAsButton:
-            view.getToggler().setRadioEnabled(MoexSettings.instance().isDisableSendAsButton(), isUpdate);
+            view.getToggler().setRadioEnabled(MoexConfig.disableSendAsButton, isUpdate);
             break;
         }
       }
