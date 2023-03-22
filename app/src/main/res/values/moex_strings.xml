@@ -39,4 +39,5 @@
   <string name="MoexAbout">About</string>
   <string name="MoexAboutText">**Moegram X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
   <string name="MoexVer">Moegram X v1.1-release</string>
+    <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu</string>
 </resources>

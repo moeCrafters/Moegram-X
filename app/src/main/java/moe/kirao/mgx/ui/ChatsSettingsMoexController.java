@@ -1,24 +1,22 @@
 package moe.kirao.mgx.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.SparseIntArray;
 import android.view.View;
-
-import moe.kirao.mgx.MoexSettings;
 
 import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
 import org.thunderdog.challegram.navigation.ViewController;
 import org.thunderdog.challegram.telegram.Tdlib;
-import org.thunderdog.challegram.telegram.TdlibUi;
 import org.thunderdog.challegram.ui.ListItem;
 import org.thunderdog.challegram.ui.RecyclerViewController;
 import org.thunderdog.challegram.ui.SettingsAdapter;
 import org.thunderdog.challegram.v.CustomRecyclerView;
 
 import java.util.ArrayList;
+
+import moe.kirao.mgx.MoexSettings;
 
 public class ChatsSettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener, ViewController.SettingsIntDelegate {
   private SettingsAdapter adapter;
@@ -48,7 +46,7 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
   @Override public void onApplySettings (int id, SparseIntArray result) {
     switch (id) {
       case R.id.btn_recentStickersCount:
-        int count = 0;
+        int count;
         switch (result.valueAt(0)) {
           case R.id.btn_recentStickers40:
             count = 40;
