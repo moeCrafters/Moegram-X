@@ -3630,7 +3630,7 @@ public abstract class TGMessage implements InvalidateContentProvider, TdlibDeleg
       startY -= Screen.dp(isMsgSticker ? 6f : 4f);
       RectF rectF = Paints.getRectF();
       int padding = Screen.dp(6f);
-      int rad = Screen.dp(MoexConfig.roundedStickers ? 6f : 12f);
+      int rad = Screen.dp(MoexConfig.roundedStickers ? Theme.getBubbleMergeRadius() - 2 : 12f);
       rectF.set(startX - padding, startY, startX + innerWidth + padding, startY + Screen.dp(21f));
       c.drawRoundRect(rectF, rad, rad, Paints.fillingPaint(backgroundColor));
       startY -= Screen.dp(1f);
