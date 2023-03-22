@@ -37,6 +37,7 @@ import org.thunderdog.challegram.loader.gif.GifBridge;
 import org.thunderdog.challegram.loader.gif.GifFile;
 import org.thunderdog.challegram.loader.gif.GifReceiver;
 import org.thunderdog.challegram.telegram.AnimatedEmojiListener;
+import org.thunderdog.challegram.theme.Theme;
 import org.thunderdog.challegram.tool.DrawAlgorithms;
 import org.thunderdog.challegram.tool.Paints;
 import org.thunderdog.challegram.tool.Screen;
@@ -161,9 +162,9 @@ public class TGMessageSticker extends TGMessage implements AnimatedEmojiListener
           previewReceiver.requestFile(null, preview);
         }
       }
-      int corners = 0;
+      float corners = 0;
       if (MoexConfig.roundedStickers) {
-        corners = Screen.dp(6);
+        corners = Screen.dp(Theme.getBubbleMergeRadius());
       }
       if (isAnimated()) {
         receiver.getGifReceiver(key).setRadius(corners);
@@ -463,7 +464,7 @@ public class TGMessageSticker extends TGMessage implements AnimatedEmojiListener
 
   @Override
   protected int getBubbleTimePartOffsetY () {
-    return Screen.dp(3f);
+    return Screen.dp(4f);
   }
 
   @Override
