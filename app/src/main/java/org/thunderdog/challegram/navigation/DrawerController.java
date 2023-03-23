@@ -1092,7 +1092,7 @@ public class DrawerController extends ViewController<Void> implements View.OnCli
     });
 
     ViewController<?> c = UI.getCurrentStackItem(context());
-    View view = c != null ? c.get() : null;
+    View view = c != null ? c.getValue() : null;
     if (view != null && view instanceof ContentFrameLayout) {
       currentView = (ContentFrameLayout) view;
     } else {
@@ -1227,7 +1227,7 @@ public class DrawerController extends ViewController<Void> implements View.OnCli
   }
 
   private float getScreenWidth () {
-    return context.navigation().get().getMeasuredWidth();
+    return context.navigation().getValue().getMeasuredWidth();
   }
 
   public void translate (int lastScrollX) {

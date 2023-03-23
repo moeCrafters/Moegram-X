@@ -3156,7 +3156,7 @@ public class ProfileController extends ViewController<ProfileController.Args> im
   }
 
   private void toggleSupergroupGroupFeature (FutureBool currentValue, SupergroupFeatureRunnable runnable, @IdRes int toggleViewId) {
-    boolean newValue = !currentValue.get();
+    boolean newValue = !currentValue.getBoolValue();
     if (supergroupFull != null) {
       runnable.setSupergroupFeatureValue(supergroup.id, supergroupFull, newValue);
       baseAdapter.updateValuedSettingById(toggleViewId);
@@ -5460,7 +5460,7 @@ public class ProfileController extends ViewController<ProfileController.Args> im
   private void scrollPagerRecyclerBy (int dy) {
     ViewController<?> c = findCurrentCachedController();
     if (c != null) {
-      RecyclerView recyclerView = (RecyclerView) c.get();
+      RecyclerView recyclerView = (RecyclerView) c.getValue();
       recyclerView.scrollBy(0, dy);
     }
   }
@@ -5468,7 +5468,7 @@ public class ProfileController extends ViewController<ProfileController.Args> im
   private void dispatchPagerRecyclerEvent (MotionEvent e) {
     ViewController<?> c = findCurrentCachedController();
     if (c != null) {
-      c.get().dispatchTouchEvent(e);
+      c.getValue().dispatchTouchEvent(e);
     }
   }
 

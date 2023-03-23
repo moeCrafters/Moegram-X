@@ -501,7 +501,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
   }
 
   public float getPagerScrollOffsetInPixels () {
-    return get().getMeasuredWidth() * pagerScrollOffset;
+    return getValue().getMeasuredWidth() * pagerScrollOffset;
   }
 
   public float getPagerScrollOffset () {
@@ -837,7 +837,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       }
 
       @Override
-      public View get () {
+      public View getValue () {
         return toastAlertView;
       }
     };
@@ -882,7 +882,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       }
 
       @Override
-      public View get () {
+      public View getValue () {
         return pinnedMessagesBar;
       }
 
@@ -1570,7 +1570,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       if (object instanceof MessagesController) {
         container.removeView(((MessagesController) object).contentView);
       } else {
-        container.removeView(((ViewController<?>) object).get());
+        container.removeView(((ViewController<?>) object).getValue());
       }
     }
 
@@ -1608,11 +1608,11 @@ public class MessagesController extends ViewController<MessagesController.Argume
         c.bindThemeListeners(context);
         String input = context.lastMediaSearchQuery;
         if (!StringUtils.isEmpty(input)) {
-          c.get();
+          c.getValue();
           c.search(input);
         }
       }
-      container.addView(c.get());
+      container.addView(c.getValue());
       return c;
     }
 
@@ -1621,7 +1621,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       if (o instanceof MessagesController) {
         return ((MessagesController) o).contentView == view;
       } else {
-        return o instanceof ViewController && ((ViewController<?>) o).get() == view;
+        return o instanceof ViewController && ((ViewController<?>) o).getValue() == view;
       }
     }
   }
@@ -3382,7 +3382,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       return previewMode == PREVIEW_MODE_NONE || !(y > contentView.getMeasuredHeight() - bottomWrap.getMeasuredHeight() + HeaderView.getSize(true));
     }
 
-    int baseY = Views.getLocationInWindow(navigationController.get())[1];
+    int baseY = Views.getLocationInWindow(navigationController.getValue())[1];
 
     if (areStickersVisible) {
       int locationY = Views.getLocationInWindow(stickerSuggestionsWrap)[1];
@@ -4049,7 +4049,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
       NavigationStack stack = navigationController().getStack();
       stack.destroyAllButSaveLast(1);
       MainController c = new MainController(context, tdlib);
-      c.get();
+      c.getValue();
       stack.insert(c, 0);
     }
   }
@@ -8618,7 +8618,7 @@ public class MessagesController extends ViewController<MessagesController.Argume
     if (showRestriction(view, rightId, defaultRes, specificRes, specificUntilRes))
       return false;
     pickDateOrProceed(initialSendOptions, (modifiedSendOptions, disableMarkdown) -> {
-      tdlib.sendMessage(chat.id, getMessageThreadId(), replyToMessageId != null ? replyToMessageId.get() : 0, Td.newSendOptions(modifiedSendOptions, obtainSilentMode()), content.get(), null);
+      tdlib.sendMessage(chat.id, getMessageThreadId(), replyToMessageId != null ? replyToMessageId.getLongValue() : 0, Td.newSendOptions(modifiedSendOptions, obtainSilentMode()), content.getValue(), null);
     });
     return true;
   }
