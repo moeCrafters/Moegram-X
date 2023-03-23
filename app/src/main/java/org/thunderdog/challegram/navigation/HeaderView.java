@@ -383,6 +383,7 @@ public class HeaderView extends FrameLayoutFix implements View.OnClickListener, 
     }
   }
 
+
   @Override
   protected void onLayout (boolean changed, int left, int top, int right, int bottom) {
     super.onLayout(changed, left, top, right, bottom);
@@ -674,7 +675,9 @@ public class HeaderView extends FrameLayoutFix implements View.OnClickListener, 
 
   @Override
   public boolean onLongClick (View v) {
-    if (v.getTag() != null && v.getTag() instanceof String) {
+    if (navigation == null || (!navigation.isDestroyed() && !navigation.isAnimating())) {
+      openSearchMode(true, false);
+    } else if (v.getTag() != null && v.getTag() instanceof String) {
       String text = (String) v.getTag();
       if (!StringUtils.isEmpty(text)) {
         Toast toast = Toast.makeText(getContext(), text, Toast.LENGTH_SHORT);
