@@ -34,6 +34,7 @@ public class MoexConfig {
   public static final String KEY_SHOW_ID_PROFILE = "show_id_profile";
   public static final String KEY_DISABLE_SEND_AS_BUTTON = "disable_send_as_button";
   public static final String KEY_ROUNDED_STICKERS = "rounded_stickers";
+  public static final String KEY_INCREASE_RECENTS_COUNT = "increase recents count";
 
   public static boolean disableCameraButton = instance().getBoolean(KEY_DISABLE_CAMERA_BUTTON, false);
   public static boolean disableRecordButton = instance().getBoolean(KEY_DISABLE_RECORD_BUTTON, false);
@@ -44,6 +45,7 @@ public class MoexConfig {
   public static boolean hidePhoneNumber = instance().getBoolean(KEY_HIDE_PHONE_NUMBER, false);
   public static boolean showId = instance().getBoolean(KEY_SHOW_ID_PROFILE, false);
   public static boolean roundedStickers = instance().getBoolean(KEY_ROUNDED_STICKERS, false);
+  public static boolean increaseRecents = instance().getBoolean(KEY_INCREASE_RECENTS_COUNT, false);
 
   private MoexConfig () {
     File configDir = new File(UI.getAppContext().getFilesDir(), "moexconf");
@@ -212,5 +214,9 @@ public class MoexConfig {
 
   public void toggleRoundedStickers () {
     putBoolean(KEY_ROUNDED_STICKERS, roundedStickers ^= true);
+  }
+
+  public void toggleIncreaseRecents () {
+    putBoolean(KEY_INCREASE_RECENTS_COUNT, increaseRecents ^= true);
   }
 }
