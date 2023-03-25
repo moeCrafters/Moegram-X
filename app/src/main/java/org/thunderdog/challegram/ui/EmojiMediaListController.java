@@ -74,8 +74,6 @@ import me.vkryl.core.collection.LongList;
 import me.vkryl.core.collection.LongSparseIntArray;
 import me.vkryl.core.lambda.CancellableRunnable;
 
-import moe.kirao.mgx.MoexConfig;
-
 public class EmojiMediaListController extends ViewController<EmojiLayout> implements
   StickerSmallView.StickerMovementCallback,
   StickersListener,
@@ -85,8 +83,7 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
   MediaGifsAdapter.Callback,
   TGStickerSetInfo.ViewCallback,
   ClickHelper.Delegate,
-  ForceTouchView.ActionListener,
-  MoexConfig.SettingsChangeListener {
+  ForceTouchView.ActionListener {
   public EmojiMediaListController (Context context, Tdlib tdlib) {
     super(context, tdlib);
   }
@@ -109,13 +106,6 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
   private CustomRecyclerView stickersView;
   private RecyclerView gifsView;
   private RecyclerView hotView;
-
-  @Override
-  public void onSettingsChanged (String key, Object newSettings, Object oldSettings) {
-    if (key.equals(MoexConfig.KEY_RECENT_STICKERS_COUNT)) {
-      reloadStickers();
-    }
-  }
 
   @Override
   protected View onCreateView (Context context) {
@@ -187,8 +177,6 @@ public class EmojiMediaListController extends ViewController<EmojiLayout> implem
     loadGIFs(); // to show or hide GIF section
     loadStickers(); // to show sections
     loadTrending(0, 20, 0); // to show blue badge?
-
-    MoexConfig.instance().addNewSettingsListener(this);
 
     return contentView;
   }

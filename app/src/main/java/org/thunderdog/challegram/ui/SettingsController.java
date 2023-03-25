@@ -916,7 +916,7 @@ public class SettingsController extends ViewController<Void> implements
   }
 
   private void viewMoexNews () {
-    tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexNews), new TdlibUi.UrlOpenParameters().forceInstantView());
+    tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexChannelLink), new TdlibUi.UrlOpenParameters().forceInstantView());
   }
 
   private void viewSourceCode (boolean isTdlib) {
