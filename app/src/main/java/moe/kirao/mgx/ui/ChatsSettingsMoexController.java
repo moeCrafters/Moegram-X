@@ -1,16 +1,11 @@
 package moe.kirao.mgx.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.util.SparseIntArray;
 import android.view.View;
-
-import moe.kirao.mgx.MoexConfig;
 
 import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
-import org.thunderdog.challegram.navigation.ViewController;
 import org.thunderdog.challegram.telegram.Tdlib;
 import org.thunderdog.challegram.ui.ListItem;
 import org.thunderdog.challegram.ui.RecyclerViewController;
@@ -19,7 +14,9 @@ import org.thunderdog.challegram.v.CustomRecyclerView;
 
 import java.util.ArrayList;
 
-public class ChatsSettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener, ViewController.SettingsIntDelegate {
+import moe.kirao.mgx.MoexConfig;
+
+public class ChatsSettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener {
   private SettingsAdapter adapter;
 
   public ChatsSettingsMoexController (Context context, Tdlib tdlib) {
@@ -27,16 +24,12 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
   }
 
   @Override public CharSequence getName () {
-    return Lang.getString(R.string.MoexChatsSettings);
+    return Lang.getString(R.string.ChatsMoexSettings);
   }
 
   @Override public void onClick (View v) {
     int id = v.getId();
     switch (id) {
-      case R.id.btn_recentStickersCount:
-        int count = MoexConfig.recentStickersCount;
-        showSettings(id, new ListItem[] {new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_recentStickers20, 0, "20", R.id.btn_recentStickersCount, count == 20), new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_recentStickers40, 0, "40", R.id.btn_recentStickersCount, count == 40), new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_recentStickers60, 0, "60", R.id.btn_recentStickersCount, count == 60), new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_recentStickers80, 0, "80", R.id.btn_recentStickersCount, count == 80), new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_recentStickers100, 0, "100", R.id.btn_recentStickersCount, count == 100)}, this);
-        break;
       case R.id.btn_disableStickerTimestamp:
         MoexConfig.instance().toggleDisableStickerTimestamp();
         adapter.updateValuedSettingById(R.id.btn_disableStickerTimestamp);
@@ -44,32 +37,6 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
       case R.id.btn_roundedStickers:
         MoexConfig.instance().toggleRoundedStickers();
         adapter.updateValuedSettingById(R.id.btn_roundedStickers);
-        break;
-    }
-  }
-
-  @Override public void onApplySettings (int id, SparseIntArray result) {
-    switch (id) {
-      case R.id.btn_recentStickersCount:
-        int count;
-        switch (result.valueAt(0)) {
-          case R.id.btn_recentStickers40:
-            count = 40;
-            break;
-          case R.id.btn_recentStickers60:
-            count = 60;
-            break;
-          case R.id.btn_recentStickers80:
-            count = 80;
-            break;
-          case R.id.btn_recentStickers100:
-            count = 100;
-            break;
-          default:
-            count = 20;
-        }
-        MoexConfig.instance().setRecentStickersCount(count);
-        adapter.updateValuedSettingById(R.id.btn_recentStickersCount);
         break;
     }
   }
@@ -83,9 +50,6 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
       @Override protected void setValuedSetting (ListItem item, SettingView view, boolean isUpdate) {
         view.setDrawModifier(item.getDrawModifier());
         switch (item.getId()) {
-          case R.id.btn_recentStickersCount:
-            view.setData("" + MoexConfig.recentStickersCount);
-            break;
           case R.id.btn_disableStickerTimestamp:
             view.getToggler().setRadioEnabled(MoexConfig.hideStickerTimestamp, isUpdate);
             break;
@@ -99,8 +63,6 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
     ArrayList<ListItem> items = new ArrayList<>();
     items.add(new ListItem(ListItem.TYPE_EMPTY_OFFSET_SMALL));
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.MoexStickersCount));
-    items.add(new ListItem(ListItem.TYPE_VALUED_SETTING_COMPACT, R.id.btn_recentStickersCount, 0, R.string.RecentStickersCount));
-    items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_disableStickerTimestamp, 0, R.string.DisableStickerTimestamp));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_roundedStickers, 0, R.string.RoundedStickers));
