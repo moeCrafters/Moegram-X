@@ -22,11 +22,9 @@
   <string name="DisableRecordButton">Hide Record Button</string>
   <string name="moexNews">Moegram news channel</string>
   <string name="MoexChatsSettings">Chats options</string>
-  <string name="RecentStickersCount">Recent Stickers Count</string>
   <string name="MoexStickersCount">Stickers</string>
   <string name="DisableStickerTimestamp">Hide Time on Stickers</string>
   <string name="RoundedStickers">Rounded Stickers</string>
-  <string name="MoexNews">https://t.me/moegramx</string>
   <string name="DrawerOptions">Drawer options</string>
   <string name="hidePhoneNumber">Hide Phone Number</string>
   <string name="EnableFeatures">Enable Feature toggles</string>
@@ -39,6 +37,6 @@
   <string name="MobileHidden">Mobile Hidden</string>
   <string name="MoexAbout">About</string>
   <string name="MoexAboutText">**Moegram X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
-  <string name="MoexVer">Moegram X v1.1-release</string>
-    <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu</string>
+  <string name="MoexVer">Moegram X v1.2-release</string>
+  <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu</string>
 </resources>

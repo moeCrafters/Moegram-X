@@ -25,7 +25,6 @@ public class MoexConfig {
   private final LevelDB config;
   private static final String KEY_VERSION = "version";
 
-  public static final String KEY_RECENT_STICKERS_COUNT = "recent_stickers_count";
   public static final String KEY_DISABLE_CAMERA_BUTTON = "disable_camera_button";
   public static final String KEY_DISABLE_RECORD_BUTTON = "disable_record_button";
   public static final String KEY_DISABLE_COMMANDS_BUTTON = "disable_commands_button";
@@ -36,7 +35,6 @@ public class MoexConfig {
   public static final String KEY_DISABLE_SEND_AS_BUTTON = "disable_send_as_button";
   public static final String KEY_ROUNDED_STICKERS = "rounded_stickers";
 
-  public static int recentStickersCount = instance().getInt(KEY_RECENT_STICKERS_COUNT, 20);
   public static boolean disableCameraButton = instance().getBoolean(KEY_DISABLE_CAMERA_BUTTON, false);
   public static boolean disableRecordButton = instance().getBoolean(KEY_DISABLE_RECORD_BUTTON, false);
   public static boolean disableCommandsButton = instance().getBoolean(KEY_DISABLE_COMMANDS_BUTTON, false);
@@ -175,11 +173,6 @@ public class MoexConfig {
         listener.onSettingsChanged(key, newSettings, oldSettings);
       }
     }
-  }
-
-  public void setRecentStickersCount (int count) {
-    notifyNewSettingsListeners(KEY_RECENT_STICKERS_COUNT, count, recentStickersCount);
-    putInt(KEY_RECENT_STICKERS_COUNT, recentStickersCount = count);
   }
 
   public void toggleDisableCameraButton () {

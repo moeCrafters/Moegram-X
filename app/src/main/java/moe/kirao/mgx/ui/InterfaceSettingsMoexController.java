@@ -1,15 +1,11 @@
 package moe.kirao.mgx.ui;
 
 import android.content.Context;
-import android.util.SparseIntArray;
 import android.view.View;
-
-import moe.kirao.mgx.MoexConfig;
 
 import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
-import org.thunderdog.challegram.navigation.ViewController;
 import org.thunderdog.challegram.telegram.Tdlib;
 import org.thunderdog.challegram.ui.ListItem;
 import org.thunderdog.challegram.ui.RecyclerViewController;
@@ -18,7 +14,9 @@ import org.thunderdog.challegram.v.CustomRecyclerView;
 
 import java.util.ArrayList;
 
-public class InterfaceSettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener, ViewController.SettingsIntDelegate {
+import moe.kirao.mgx.MoexConfig;
+
+public class InterfaceSettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener {
   private SettingsAdapter adapter;
 
   public InterfaceSettingsMoexController (Context context, Tdlib tdlib) {
@@ -26,7 +24,7 @@ public class InterfaceSettingsMoexController extends RecyclerViewController<Void
   }
 
   @Override public CharSequence getName () {
-    return Lang.getString(R.string.MoexInterfaceSettings);
+    return Lang.getString(R.string.InterfaceMoexSettings);
   }
 
   @Override public void onClick (View v) {
@@ -49,10 +47,6 @@ public class InterfaceSettingsMoexController extends RecyclerViewController<Void
         adapter.updateValuedSettingById(R.id.btn_disableSendAsButton);
         break;
     }
-  }
-
-  @Override public void onApplySettings (int id, SparseIntArray result) {
-
   }
 
   @Override public int getId () {

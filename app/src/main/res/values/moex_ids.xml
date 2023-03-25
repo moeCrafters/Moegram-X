@@ -8,16 +8,10 @@
   <item name="btn_moexChatLink" type="id" />
   <item name="btn_moexUpdatesLink" type="id" />
   <item name="btn_moexSourceLink" type="id" />
-  <item name="btn_recentStickersCount" type="id" />
   <item name="btn_disableCameraButton" type="id" />
   <item name="btn_disableRecordButton" type="id" />
   <item name="btn_disableCommandsButton" type="id" />
   <item name="btn_moexSettings" type="id" />
-  <item name="btn_recentStickers20" type="id" />
-  <item name="btn_recentStickers40" type="id" />
-  <item name="btn_recentStickers60" type="id" />
-  <item name="btn_recentStickers80" type="id" />
-  <item name="btn_recentStickers100" type="id" />
   <item name="btn_disableStickerTimestamp" type="id" />
   <item name="btn_chatId" type="id" />
   <item name="btn_hidePhone" type="id" />
