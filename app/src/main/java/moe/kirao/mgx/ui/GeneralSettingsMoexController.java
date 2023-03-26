@@ -42,6 +42,10 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
         MoexConfig.instance().toggleShowIdProfile();
         adapter.updateValuedSettingById(R.id.btn_showIdProfile);
         break;
+      case R.id.btn_hideMessagesBadge:
+        MoexConfig.instance().toggleHideMessagesBadge();
+        adapter.updateValuedSettingById(R.id.btn_hideMessagesBadge);
+        break;
     }
   }
 
@@ -63,6 +67,9 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
           case R.id.btn_showIdProfile:
             view.getToggler().setRadioEnabled(MoexConfig.showId, isUpdate);
             break;
+          case R.id.btn_hideMessagesBadge:
+            view.getToggler().setRadioEnabled(MoexConfig.hideMessagesBadge, isUpdate);
+            break;
         }
       }
     };
@@ -73,6 +80,8 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_hidePhone, 0, R.string.hidePhoneNumber));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_showIdProfile, 0, R.string.showIdProfile));
+    items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
+    items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_hideMessagesBadge, 0, R.string.hideMessagesBadge));
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.ExperimentalOptions));

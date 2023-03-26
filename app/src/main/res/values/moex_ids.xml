@@ -20,4 +20,5 @@
   <item name="btn_disableSendAsButton" type="id" />
   <item name="btn_roundedStickers" type="id" />
   <item name="btn_IncreaseRecents" type="id" />
+  <item name="btn_hideMessagesBadge" type="id" />
 </resources>

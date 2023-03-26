@@ -40,4 +40,5 @@
   <string name="MoexVer">Moegram X v1.2-release</string>
   <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu</string>
   <string name="IncreaseRecents">Increase Recents Stickers Count</string>
+  <string name="hideMessagesBadge">Hide Unread Messages Badge</string>
 </resources>
