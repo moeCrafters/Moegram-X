@@ -529,6 +529,15 @@ public class SettingsController extends ViewController<Void> implements
             view.setData(R.string.CopyReportDataInfo);
             break;
           }
+          case R.id.btn_chatId: {
+            final TdApi.User user = tdlib.myUser();
+            if (user != null) {
+              view.setData("" + user.id);
+            } else {
+              view.setData(R.string.unknownUser);
+            }
+            break;
+          }
           case R.id.btn_devices: {
             if (sessions == null) {
               view.setData(R.string.LoadingInformation);
@@ -614,6 +623,10 @@ public class SettingsController extends ViewController<Void> implements
     items.add(new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_phone, R.drawable.baseline_phone_24, R.string.Phone));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR));
     items.add(new ListItem(ListItem.TYPE_INFO_MULTILINE, R.id.btn_bio, R.drawable.baseline_info_24, R.string.UserBio).setContentStrings(R.string.LoadingInformation, R.string.BioNone));
+    if (MoexConfig.showId) {
+    items.add(new ListItem(ListItem.TYPE_SEPARATOR));
+    items.add(new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_chatId, R.drawable.baseline_fingerprint_24, R.string.ChatId));
+    }
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     TdApi.SuggestedAction[] actions = tdlib.getSuggestedActions();
@@ -994,6 +1007,29 @@ public class SettingsController extends ViewController<Void> implements
         EditBioController c = new EditBioController(context, tdlib);
         c.setArguments(new EditBioController.Arguments(about != null ? about.text : "", 0));
         navigateTo(c);
+        break;
+      }
+      case R.id.btn_chatId: {
+        final TdApi.User user = tdlib.myUser();
+        IntList ids = new IntList(1);
+        StringList strings = new StringList(1);
+        IntList icons = new IntList(1);
+
+        ids.append(R.id.btn_copyText);
+        strings.append(R.string.Copy);
+        icons.append(R.drawable.baseline_content_copy_24);
+
+        if (user != null) {
+          showOptions("" + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
+            UI.copyText("" + user.id, R.string.CopiedText);
+            return true;
+          });
+        } else {
+          showOptions(Lang.getStringSecure(R.string.unknownUser) , ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
+            UI.copyText(Lang.getStringSecure(R.string.unknownUser), R.string.CopiedText);
+            return true;
+          });
+        }
         break;
       }
       case R.id.btn_languageSettings: {
