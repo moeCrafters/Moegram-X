@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-  <string name="MoexSettings">Moegram X options</string>
+  <string name="MoexSettings">Moegram-X options</string>
   <string name="GeneralMoexSettings">General</string>
   <string name="InterfaceMoexSettings">Interface</string>
   <string name="ChatsMoexSettings">Chats</string>
@@ -20,7 +20,7 @@
   <string name="DisableCommandsButton">Hide Commands Button</string>
   <string name="DisableCameraButton">Hide Camera Button</string>
   <string name="DisableRecordButton">Hide Record Button</string>
-  <string name="moexNews">Moegram news channel</string>
+  <string name="moexNews">Moegram-X news channel</string>
   <string name="MoexChatsSettings">Chats options</string>
   <string name="MoexStickersCount">Stickers</string>
   <string name="DisableStickerTimestamp">Hide Time on Stickers</string>
@@ -36,8 +36,8 @@
   <string name="DisableSendAsButton">Hide "Send as Channel" Button</string>
   <string name="MobileHidden">Mobile Hidden</string>
   <string name="MoexAbout">About</string>
-  <string name="MoexAboutText">**Moegram X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
-  <string name="MoexVer">Moegram X v1.2-release</string>
+  <string name="MoexAboutText">**Moegram-X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
+  <string name="MoexVer">Moegram-X v1.2-release(Daifuku)</string>
   <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu</string>
   <string name="IncreaseRecents">Increase Recents Stickers Count</string>
   <string name="hideMessagesBadge">Hide Unread Messages Badge</string>
