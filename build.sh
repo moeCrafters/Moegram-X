@@ -1,6 +1,6 @@
 #!/bin/bash
 
-doc="https://api.telegram.org/bot$token/sendDocument?chat_id=-1001559501352"
+doc="https://api.telegram.org/bot$token/sendDocument?chat_id=-1001516526055"
 doc_fail="https://api.telegram.org/bot$token/sendDocument?chat_id=1773117711"
 
 send_build() { curl -F document=@"$1" "$doc" -F "parse_mode=html" -F caption="$text"; }
