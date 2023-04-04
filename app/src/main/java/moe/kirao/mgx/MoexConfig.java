@@ -211,6 +211,7 @@ public class MoexConfig {
   }
 
   public void toggleDisableSendAsButton () {
+    notifyNewSettingsListeners(KEY_DISABLE_SEND_AS_BUTTON, !disableSendAsButton, disableSendAsButton);
     putBoolean(KEY_DISABLE_SEND_AS_BUTTON, disableSendAsButton ^= true);
   }
 
