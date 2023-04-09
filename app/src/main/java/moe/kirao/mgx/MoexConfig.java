@@ -36,6 +36,7 @@ public class MoexConfig {
   public static final String KEY_ROUNDED_STICKERS = "rounded_stickers";
   public static final String KEY_INCREASE_RECENTS_COUNT = "increase recents count";
   public static final String KEY_HIDE_MESSAGES_BADGE = "hide messages badge";
+  public static final String KEY_ENABLE_REORDER_STICKERS = "reorder stickers";
 
   public static boolean disableCameraButton = instance().getBoolean(KEY_DISABLE_CAMERA_BUTTON, false);
   public static boolean disableRecordButton = instance().getBoolean(KEY_DISABLE_RECORD_BUTTON, false);
@@ -48,6 +49,7 @@ public class MoexConfig {
   public static boolean roundedStickers = instance().getBoolean(KEY_ROUNDED_STICKERS, false);
   public static boolean increaseRecents = instance().getBoolean(KEY_INCREASE_RECENTS_COUNT, false);
   public static boolean hideMessagesBadge = instance().getBoolean(KEY_HIDE_MESSAGES_BADGE, false);
+  public static boolean reorderStickers = instance().getBoolean(KEY_ENABLE_REORDER_STICKERS, false);
 
   private MoexConfig () {
     File configDir = new File(UI.getAppContext().getFilesDir(), "moexconf");
@@ -165,12 +167,6 @@ public class MoexConfig {
     newSettingsListeners.add(listener);
   }
 
-  public void removeNewSettingsListener (SettingsChangeListener listener) {
-    if (newSettingsListeners != null) {
-      newSettingsListeners.remove(listener);
-    }
-  }
-  
   private void notifyNewSettingsListeners (String key, Object newSettings, Object oldSettings) {
     if (newSettingsListeners != null) {
       for (SettingsChangeListener listener : newSettingsListeners) {
@@ -220,10 +216,16 @@ public class MoexConfig {
   }
 
   public void toggleIncreaseRecents () {
+    notifyNewSettingsListeners(KEY_INCREASE_RECENTS_COUNT, !increaseRecents, increaseRecents);
     putBoolean(KEY_INCREASE_RECENTS_COUNT, increaseRecents ^= true);
   }
 
   public void toggleHideMessagesBadge () {
     putBoolean(KEY_HIDE_MESSAGES_BADGE, hideMessagesBadge ^= true);
+  }
+
+  public void toggleEnableReorderStickers () {
+    notifyNewSettingsListeners(KEY_ENABLE_REORDER_STICKERS, !reorderStickers, reorderStickers);
+    putBoolean(KEY_ENABLE_REORDER_STICKERS, reorderStickers ^= true);
   }
 }

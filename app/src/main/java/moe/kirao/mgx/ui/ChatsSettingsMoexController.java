@@ -42,6 +42,10 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
         MoexConfig.instance().toggleIncreaseRecents();
         adapter.updateValuedSettingById(R.id.btn_IncreaseRecents);
         break;
+      case R.id.btn_ReorderStickers:
+        MoexConfig.instance().toggleEnableReorderStickers();
+        adapter.updateValuedSettingById(R.id.btn_ReorderStickers);
+        break;
     }
   }
 
@@ -63,6 +67,9 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
           case R.id.btn_IncreaseRecents:
             view.getToggler().setRadioEnabled(MoexConfig.increaseRecents, isUpdate);
             break;
+          case R.id.btn_ReorderStickers:
+            view.getToggler().setRadioEnabled(MoexConfig.reorderStickers, isUpdate);
+            break;
         }
       }
     };
@@ -75,7 +82,11 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_roundedStickers, 0, R.string.RoundedStickers));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_IncreaseRecents, 0, R.string.IncreaseRecents));
+    items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
+    items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_ReorderStickers, 0, R.string.ReorderStickers));
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
+    items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.ReorderStickersInfo), false));
+    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
 
     adapter.setItems(items, true);
     recyclerView.setAdapter(adapter);

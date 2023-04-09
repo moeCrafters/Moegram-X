@@ -289,7 +289,7 @@ public class Config {
   public static final boolean TEST_STATIC_REACTIONS = false;
   public static final boolean TEST_GENERIC_REACTION_EFFECTS = false;
 
-  public static final boolean REORDER_INSTALLED_STICKER_SETS = false;
+  public static final boolean REORDER_INSTALLED_STICKER_SETS = MoexConfig.reorderStickers;
 
   public static final boolean NEED_TEMPORARY_TOPICS_WORKAROUND = true;
 
