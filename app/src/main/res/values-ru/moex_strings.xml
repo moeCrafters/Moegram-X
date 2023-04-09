@@ -13,7 +13,7 @@
   <string name="MoexHideButtons">Панель сообщения</string>
   <string name="DisableCommandsButton">Скрыть кнопку Комманд</string>
   <string name="DisableCameraButton">Скрыть кнопку Камеры</string>
-  <string name="HideCameraButtonInfo">Эта функция так же добавляет плавающую кнопку камеры в меню отправки медиа</string>
+  <string name="HideCameraButtonInfo">Эта функция так же добавляет плавающую кнопку камеры в меню отправки медиа.</string>
   <string name="DisableRecordButton">Скрыть кнопку Медиа</string>
   <string name="moexNews">Новости о Moegram-X</string>
   <string name="MoexStickersCount">Стикеры</string>
@@ -22,7 +22,7 @@
   <string name="DrawerOptions">Настройки бокового меню</string>
   <string name="hidePhoneNumber">Скрыть Номер Телефона</string>
   <string name="EnableFeatures">Показать Тестовые Настройки</string>
-  <string name="FeaturesButtonInfo">Эта функция включает отображение скрытого пункта с тестируемыми функциями в боковом меню</string>
+  <string name="FeaturesButtonInfo">Эта функция включает отображение скрытого пункта с тестируемыми функциями в боковом меню.</string>
   <string name="ExperimentalOptions">Нестабильные настройки</string>
   <string name="PhoneHidden">Телефон скрыт</string>
   <string name="showIdProfile">Показывать ID в Профиле</string>
@@ -32,4 +32,6 @@
   <string name="MoexAboutText">**Moegram-X** это милый клиент c небольшим функционалом, основанный на официальном исходном коде и TDlib. Присоединяйтесь к нашему чату, где вы сможете предложить новые функции или указать на ошибки!</string>
   <string name="IncreaseRecents">Увеличить количество недавних</string>
   <string name="hideMessagesBadge">Скрыть метку с кнопки Меню</string>
+  <string name="ReorderStickers">Динамический порядок стикеров</string>
+  <string name="ReorderStickersInfo">Автоматически размещать недавно использованные стикеры перед другими.</string>
 </resources>
