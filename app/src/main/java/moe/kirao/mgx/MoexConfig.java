@@ -216,7 +216,6 @@ public class MoexConfig {
   }
 
   public void toggleIncreaseRecents () {
-    notifyNewSettingsListeners(KEY_INCREASE_RECENTS_COUNT, !increaseRecents, increaseRecents);
     putBoolean(KEY_INCREASE_RECENTS_COUNT, increaseRecents ^= true);
   }
 
@@ -225,7 +224,6 @@ public class MoexConfig {
   }
 
   public void toggleEnableReorderStickers () {
-    notifyNewSettingsListeners(KEY_ENABLE_REORDER_STICKERS, !reorderStickers, reorderStickers);
     putBoolean(KEY_ENABLE_REORDER_STICKERS, reorderStickers ^= true);
   }
 }

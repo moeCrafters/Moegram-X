@@ -20,7 +20,7 @@
   <string name="DisableCommandsButton">Hide Commands Button</string>
   <string name="DisableCameraButton">Hide Camera Button</string>
   <string name="DisableRecordButton">Hide Record Button</string>
-  <string name="moexNews">Moegram news channel</string>
+  <string name="moexNews">Moegram X news channel</string>
   <string name="MoexChatsSettings">Chats options</string>
   <string name="MoexStickersCount">Stickers</string>
   <string name="DisableStickerTimestamp">Hide Time on Stickers</string>
@@ -28,7 +28,7 @@
   <string name="DrawerOptions">Drawer options</string>
   <string name="hidePhoneNumber">Hide Phone Number</string>
   <string name="EnableFeatures">Enable Feature toggles</string>
-  <string name="FeaturesButtonInfo">Show experimental settings button in Drawer</string>
+  <string name="FeaturesButtonInfo">Show experimental settings button in Drawer.</string>
   <string name="ExperimentalOptions">Experimental options</string>
   <string name="PhoneHidden">Phone hidden</string>
   <string name="ChatId">ID</string>
@@ -36,11 +36,16 @@
   <string name="DisableSendAsButton">Hide "Send as Channel" Button</string>
   <string name="MobileHidden">Mobile Hidden</string>
   <string name="MoexAbout">About</string>
-  <string name="MoexAboutText">**Moegram X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
-  <string name="MoexVer">Moegram X v1.2-release</string>
-  <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu</string>
+  <string name="MoexAboutText">**Moegram-X** is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
+  <string name="MoexVer">Moegram-X v1.3-release</string>
+  <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu.</string>
   <string name="IncreaseRecents">Increase Recents Stickers Count</string>
   <string name="hideMessagesBadge">Hide Unread Messages Badge</string>
   <string name="ReorderStickers">Reorder Installed Sticker packs</string>
   <string name="ReorderStickersInfo">Automatically place recently used sticker packs above others.</string>
+  <string name="moexChannel">\@moegramx</string>
+  <string name="moexChat">\@moe_chat</string>
+  <string name="moexUpdates">\@moex_log</string>
+  <string name="moexGithub">GitHub</string>
+  <string name="MoexCuteSettings">A litle moe goes a long way~</string>
 </resources>

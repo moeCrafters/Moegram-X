@@ -507,6 +507,10 @@ public class SettingsController extends ViewController<Void> implements
           } else {
             view.setData(R.string.unknownUser);
           }
+        } else if (itemId == R.id.btn_checkUpdates) {
+          view.setData(R.string.moexNews);
+        } else if (itemId == R.id.btn_moexSettings) {
+          view.setData(R.string.MoexSettings);
         } else if (itemId == R.id.btn_devices) {
           if (sessions == null) {
             view.setData(R.string.LoadingInformation);
@@ -613,7 +617,7 @@ public class SettingsController extends ViewController<Void> implements
 
     checkErrors(false);
 
-    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_moexSettings, R.drawable.templarian_baseline_flask_24, R.string.MoexSettings));
+    items.add(new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_moexSettings, R.drawable.templarian_baseline_flask_24, R.string.MoexCuteSettings));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR));
     items.add(new ListItem(notificationErrorDescriptionRes != 0 ? ListItem.TYPE_VALUED_SETTING_COMPACT : ListItem.TYPE_SETTING, R.id.btn_notificationSettings, R.drawable.baseline_notifications_24, R.string.Notifications));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR));
@@ -631,7 +635,7 @@ public class SettingsController extends ViewController<Void> implements
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
-    items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_checkUpdates, R.drawable.baseline_casino_24, U.isAppSideLoaded() ? R.string.moexNews : R.string.CheckForUpdates));
+    items.add(new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_checkUpdates, R.drawable.baseline_casino_24, R.string.moexChannel));
     if (!U.isAppSideLoaded()) {
       items.add(new ListItem(ListItem.TYPE_SEPARATOR));
       items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_subscribeToBeta, R.drawable.templarian_baseline_flask_24, R.string.SubscribeToBeta));
