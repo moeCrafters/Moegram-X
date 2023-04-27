@@ -37,6 +37,12 @@ public class MoexConfig {
   public static final String KEY_INCREASE_RECENTS_COUNT = "increase recents count";
   public static final String KEY_HIDE_MESSAGES_BADGE = "hide messages badge";
   public static final String KEY_ENABLE_REORDER_STICKERS = "reorder stickers";
+  public static final String KEY_CHANGE_HEADER_TEXT = "change header text";
+
+  public static final int HEADER_TEXT_CHATS = 0;
+  public static final int HEADER_TEXT_MOEX = 1;
+  public static final int HEADER_TEXT_USERNAME = 2;
+  public static final int HEADER_TEXT_NAME = 3;
 
   public static boolean disableCameraButton = instance().getBoolean(KEY_DISABLE_CAMERA_BUTTON, false);
   public static boolean disableRecordButton = instance().getBoolean(KEY_DISABLE_RECORD_BUTTON, false);
@@ -225,5 +231,17 @@ public class MoexConfig {
 
   public void toggleEnableReorderStickers () {
     putBoolean(KEY_ENABLE_REORDER_STICKERS, reorderStickers ^= true);
+  }
+
+  public int getHeaderText () {
+    return getInt(KEY_CHANGE_HEADER_TEXT, HEADER_TEXT_MOEX);
+  }
+
+  public void setHeaderText (int mode) {
+    if (mode == HEADER_TEXT_MOEX) {
+      remove(KEY_CHANGE_HEADER_TEXT);
+    } else {
+      putInt(KEY_CHANGE_HEADER_TEXT, mode);
+    }
   }
 }

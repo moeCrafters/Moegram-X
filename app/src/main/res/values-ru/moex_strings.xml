@@ -34,4 +34,6 @@
   <string name="hideMessagesBadge">Скрыть метку с кнопки Меню</string>
   <string name="ReorderStickers">Динамический порядок стикеров</string>
   <string name="ReorderStickersInfo">Автоматически размещать недавно использованные стикеры перед другими.</string>
+  <string name="MoexCuteSettings">Попробуй что-нибудь новое ~</string>
+  <string name="changeHeaderText">Текст заголовка</string>
 </resources>
