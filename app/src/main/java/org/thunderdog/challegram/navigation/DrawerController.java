@@ -266,7 +266,6 @@ public class DrawerController extends ViewController<Void> implements View.OnCli
     items.add(new ListItem(ListItem.TYPE_DRAWER_ITEM, R.id.btn_savedMessages, R.drawable.baseline_bookmark_24, R.string.SavedMessages));
     this.settingsErrorIcon = getSettingsErrorIcon();
     items.add(new ListItem(ListItem.TYPE_DRAWER_ITEM, R.id.btn_settings, R.drawable.baseline_settings_24, R.string.Settings));
-    items.add(new ListItem(ListItem.TYPE_DRAWER_ITEM, R.id.btn_invite, R.drawable.baseline_person_add_24, R.string.InviteFriends));
 
     this.proxyAvailable = Settings.instance().getAvailableProxyCount() > 0;
     if (proxyAvailable) {
@@ -892,14 +891,6 @@ public class DrawerController extends ViewController<Void> implements View.OnCli
       case R.id.btn_help: {
         cancelSupportOpen();
         supportOpen = context.currentTdlib().ui().openSupport(context.navigation().getCurrentStackItem());
-        break;
-      }
-      case R.id.btn_invite: {
-        context.currentTdlib().cache().getInviteText(text -> {
-          if (isVisible() && !isDestroyed()) {
-            shareText(text.text);
-          }
-        });
         break;
       }
       case R.id.btn_night: {

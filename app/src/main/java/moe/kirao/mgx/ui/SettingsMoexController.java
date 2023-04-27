@@ -1,14 +1,13 @@
 package moe.kirao.mgx.ui;
 
 import android.content.Context;
-import android.util.SparseIntArray;
 import android.view.View;
 
-import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.BuildConfig;
+import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.U;
+import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
-import org.thunderdog.challegram.navigation.ViewController;
 import org.thunderdog.challegram.telegram.Tdlib;
 import org.thunderdog.challegram.telegram.TdlibUi;
 import org.thunderdog.challegram.tool.UI;
@@ -19,7 +18,7 @@ import org.thunderdog.challegram.v.CustomRecyclerView;
 
 import java.util.ArrayList;
 
-public class SettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener, View.OnLongClickListener, ViewController.SettingsIntDelegate {
+public class SettingsMoexController extends RecyclerViewController<Void> implements View.OnClickListener, View.OnLongClickListener {
 
   public SettingsMoexController (Context context, Tdlib tdlib) {
     super(context, tdlib);
@@ -69,16 +68,30 @@ public class SettingsMoexController extends RecyclerViewController<Void> impleme
     return false;
   }
 
-  @Override public void onApplySettings (int id, SparseIntArray result) {
-
-  }
-
   @Override public int getId () {
     return R.id.controller_moexSettings;
   }
 
   @Override protected void onCreateView (Context context, CustomRecyclerView recyclerView) {
-    SettingsAdapter adapter = new SettingsAdapter(this);
+    SettingsAdapter adapter = new SettingsAdapter(this) {
+      @Override protected void setValuedSetting (ListItem item, SettingView view, boolean isUpdate) {
+        view.setDrawModifier(item.getDrawModifier());
+        switch (item.getId()) {
+          case R.id.btn_moexChannelLink:
+            view.setData(R.string.moexChannel);
+            break;
+          case R.id.btn_moexChatLink:
+            view.setData(R.string.moexChat);
+            break;
+          case R.id.btn_moexUpdatesLink:
+            view.setData(R.string.moexUpdates);
+            break;
+          case R.id.btn_moexSourceLink:
+            view.setData(R.string.moexGithub);
+            break;
+        }
+      }
+    };
 
     ArrayList<ListItem> items = new ArrayList<>();
     items.add(new ListItem(ListItem.TYPE_EMPTY_OFFSET_SMALL));

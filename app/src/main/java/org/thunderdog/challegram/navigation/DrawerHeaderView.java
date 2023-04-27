@@ -214,7 +214,6 @@ public class DrawerHeaderView extends View implements Destroyable, GlobalAccount
 
     private final long userId;
     private final String name, phone;
-    private String username;
     private ImageFile avatar, avatarFull;
     private final AvatarPlaceholder avatarPlaceholder;
 
@@ -245,7 +244,7 @@ public class DrawerHeaderView extends View implements Destroyable, GlobalAccount
       userId = account.getKnownUserId();
       if (account.hasUserInfo()) {
         name = account.getName();
-        username = account.getUsername();
+        String username = account.getUsername();
         if (MoexConfig.hidePhoneNumber && username != null) {
           phone = "@" + username;
         } else if (MoexConfig.hidePhoneNumber) {

@@ -43,4 +43,9 @@
   <string name="hideMessagesBadge">Hide Unread Messages Badge</string>
   <string name="ReorderStickers">Reorder Installed Sticker packs</string>
   <string name="ReorderStickersInfo">Automatically place recently used sticker packs above others.</string>
+    <string name="moexChannel">\@moegramx</string>
+  <string name="moexChat">\@moe_chat</string>
+  <string name="moexUpdates">\@moex_log</string>
+  <string name="moexGithub">GitHub</string>
+  <string name="MoexCuteSettings">A litle moe goes a long way!</string>
 </resources>
