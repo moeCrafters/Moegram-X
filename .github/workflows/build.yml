@@ -42,6 +42,10 @@ jobs:
       - name: Build
         run: |
           export token=$(echo "${{ secrets.token }}" | base64 -d)
+          export chatid=$(echo "${{ secrets.chatid }}" | base64 -d)
+          export chatid_chlog=$(echo "${{ secrets.chatid_chlog }}" | base64 -d)
+          export isstable=$(echo "${{ secrets.isstable }}" | base64 -d)
+          export chatid_release=$(echo "${{ secrets.chatid_release }}" | base64 -d)
           export commit="${{ github.event.head_commit.message }}"
           export commit_author="${{ github.actor }}"
           export commit_sha="${{ github.sha }}"
