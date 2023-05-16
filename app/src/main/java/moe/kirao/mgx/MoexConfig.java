@@ -37,6 +37,11 @@ public class MoexConfig {
   public static final String KEY_INCREASE_RECENTS_COUNT = "increase recents count";
   public static final String KEY_HIDE_MESSAGES_BADGE = "hide messages badge";
   public static final String KEY_ENABLE_REORDER_STICKERS = "reorder stickers";
+  public static final String KEY_CHANGE_SIZE_LIMIT = "change size limit";
+
+  public static final int SIZE_LIMIT_800 = 0;
+  public static final int SIZE_LIMIT_1280 = 1;
+  public static final int SIZE_LIMIT_2560 = 2;
 
   public static boolean disableCameraButton = instance().getBoolean(KEY_DISABLE_CAMERA_BUTTON, false);
   public static boolean disableRecordButton = instance().getBoolean(KEY_DISABLE_RECORD_BUTTON, false);
@@ -225,5 +230,16 @@ public class MoexConfig {
 
   public void toggleEnableReorderStickers () {
     putBoolean(KEY_ENABLE_REORDER_STICKERS, reorderStickers ^= true);
+  }
+  public int getSizeLimit () {
+    return getInt(KEY_CHANGE_SIZE_LIMIT, SIZE_LIMIT_1280);
+  }
+
+  public void setSizeLimit (int size) {
+    if (size == SIZE_LIMIT_1280) {
+      remove(KEY_CHANGE_SIZE_LIMIT);
+    } else {
+      putInt(KEY_CHANGE_SIZE_LIMIT, size);
+    }
   }
 }

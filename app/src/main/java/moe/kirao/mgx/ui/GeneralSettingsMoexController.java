@@ -6,6 +6,7 @@ import android.view.View;
 import org.thunderdog.challegram.R;
 import org.thunderdog.challegram.component.base.SettingView;
 import org.thunderdog.challegram.core.Lang;
+import org.thunderdog.challegram.navigation.SettingsWrapBuilder;
 import org.thunderdog.challegram.telegram.Tdlib;
 import org.thunderdog.challegram.ui.ListItem;
 import org.thunderdog.challegram.ui.RecyclerViewController;
@@ -46,7 +47,35 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
         MoexConfig.instance().toggleHideMessagesBadge();
         adapter.updateValuedSettingById(R.id.btn_hideMessagesBadge);
         break;
+      case R.id.btn_changeSizeLimit:
+        showChangeSizeLimit();
+        break;
     }
+  }
+
+  private void showChangeSizeLimit () {
+    int sizeLimitOption = MoexConfig.instance().getSizeLimit();
+    showSettings(new SettingsWrapBuilder(R.id.btn_changeSizeLimit).setRawItems(new ListItem[] {
+      new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit800, 0, R.string.px800, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_800),
+      new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit1280, 0, R.string.px1280, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_1280),
+      new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit2560, 0, R.string.px2560, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_2560),
+    }).setAllowResize(false).addHeaderItem(Lang.getString(R.string.SizeLimitDesc)).setIntDelegate((id, result) -> {
+      int sizeOption = MoexConfig.instance().getSizeLimit();
+      int sizeLimit = result.get(R.id.btn_changeSizeLimit);
+      switch (sizeLimit) {
+        case R.id.btn_sizeLimit800:
+          sizeOption = MoexConfig.SIZE_LIMIT_800;
+          break;
+        case R.id.btn_sizeLimit1280:
+          sizeOption = MoexConfig.SIZE_LIMIT_1280;
+          break;
+        case R.id.btn_sizeLimit2560:
+          sizeOption = MoexConfig.SIZE_LIMIT_2560;
+          break;
+      }
+      MoexConfig.instance().setSizeLimit(sizeOption);
+      adapter.updateValuedSettingById(R.id.btn_changeSizeLimit);
+    }));
   }
 
   @Override public int getId () {
@@ -70,6 +99,21 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
           case R.id.btn_hideMessagesBadge:
             view.getToggler().setRadioEnabled(MoexConfig.hideMessagesBadge, isUpdate);
             break;
+          case R.id.btn_changeSizeLimit: {
+            int size = MoexConfig.instance().getSizeLimit();
+            switch (size) {
+              case MoexConfig.SIZE_LIMIT_800:
+                view.setData(R.string.px800);
+                break;
+              case MoexConfig.SIZE_LIMIT_1280:
+                view.setData(R.string.px1280);
+                break;
+              case MoexConfig.SIZE_LIMIT_2560:
+                view.setData(R.string.px2560);
+                break;
+            }
+            break;
+          }
         }
       }
     };
@@ -89,6 +133,8 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
     items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.FeaturesButtonInfo), false));
     items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
+    items.add(new ListItem(ListItem.TYPE_VALUED_SETTING_COMPACT, R.id.btn_changeSizeLimit, 0, R.string.changeSizeLimit));
+    items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.changeSizeLimitInfo), false));
 
     adapter.setItems(items, true);
     recyclerView.setAdapter(adapter);
