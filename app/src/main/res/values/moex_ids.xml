@@ -27,4 +27,8 @@
   <item name="btn_headerTextMoex" type="id" />
   <item name="btn_headerTextUsername" type="id" />
   <item name="btn_headerTextName" type="id" />
+    <item name="btn_changeSizeLimit" type="id" />
+  <item name="btn_sizeLimit800" type="id" />
+  <item name="btn_sizeLimit1280" type="id" />
+  <item name="btn_sizeLimit2560" type="id" />
 </resources>

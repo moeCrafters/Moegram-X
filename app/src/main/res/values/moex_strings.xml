@@ -50,4 +50,10 @@
   <string name="MoexCuteSettings">A litle moe goes a long way ~</string>
   <string name="moexHeaderClient">Moegram X</string>
   <string name="changeHeaderText">Header text</string>
+  <string name="px800">800px</string>
+  <string name="px1280">1280px</string>
+  <string name="px2560">2560px</string>
+  <string name="changeSizeLimit">Photo resolution</string>
+  <string name="changeSizeLimitInfo">Change the resolution of sent photos</string>
+  <string name="SizeLimitDesc">This feature is unstable and can cause a bit of minor interface bugs. Change to **1280px** and clear cache via storage settings if you see any visual bugs with sent photos.</string>
 </resources>
