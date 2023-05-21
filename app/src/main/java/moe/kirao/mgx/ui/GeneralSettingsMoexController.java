@@ -53,7 +53,7 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit800, 0, R.string.px800, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_800),
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit1280, 0, R.string.px1280, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_1280),
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit2560, 0, R.string.px2560, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_2560),
-    }).setAllowResize(false).addHeaderItem(Lang.getString(R.string.SizeLimitDesc)).setIntDelegate((id, result) -> {
+    }).setAllowResize(false).addHeaderItem(Lang.getMarkdownString(this, R.string.SizeLimitDesc)).setIntDelegate((id, result) -> {
       int sizeOption;
       int sizeLimit = result.get(R.id.btn_changeSizeLimit);
       if (sizeLimit == R.id.btn_sizeLimit800) {
@@ -105,6 +105,7 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     ArrayList<ListItem> items = new ArrayList<>();
     items.add(new ListItem(ListItem.TYPE_EMPTY_OFFSET_SMALL));
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.DrawerOptions));
+    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_hidePhone, 0, R.string.hidePhoneNumber));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_showIdProfile, 0, R.string.showIdProfile));
@@ -113,6 +114,7 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.ExperimentalOptions));
+    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_enableFeaturesButton, 0, R.string.EnableFeatures));
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
     items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.FeaturesButtonInfo), false));
