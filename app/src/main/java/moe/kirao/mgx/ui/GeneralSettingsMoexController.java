@@ -64,23 +64,23 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_headerTextUsername, 0, R.string.Username, R.id.btn_headerText, headerTextOption == MoexConfig.HEADER_TEXT_USERNAME),
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_headerTextName, 0, R.string.login_FirstName, R.id.btn_headerText, headerTextOption == MoexConfig.HEADER_TEXT_NAME),
     }).setIntDelegate((id, result) -> {
-      int defaultOption = MoexConfig.instance().getHeaderText();
+      int headerOption = MoexConfig.instance().getHeaderText();
       int headerText = result.get(R.id.btn_headerText);
       switch (headerText) {
         case R.id.btn_headerTextChats:
-          defaultOption = MoexConfig.HEADER_TEXT_CHATS;
+          headerOption = MoexConfig.HEADER_TEXT_CHATS;
           break;
         case R.id.btn_headerTextMoex:
-          defaultOption = MoexConfig.HEADER_TEXT_MOEX;
+          headerOption = MoexConfig.HEADER_TEXT_MOEX;
           break;
         case R.id.btn_headerTextUsername:
-          defaultOption = MoexConfig.HEADER_TEXT_USERNAME;
+          headerOption = MoexConfig.HEADER_TEXT_USERNAME;
           break;
         case R.id.btn_headerTextName:
-          defaultOption = MoexConfig.HEADER_TEXT_NAME;
+          headerOption = MoexConfig.HEADER_TEXT_NAME;
           break;
       }
-      MoexConfig.instance().setHeaderText(defaultOption);
+      MoexConfig.instance().setHeaderText(headerOption);
       adapter.updateValuedSettingById(R.id.btn_headerText);
     }));
   }
@@ -91,7 +91,7 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit800, 0, R.string.px800, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_800),
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit1280, 0, R.string.px1280, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_1280),
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit2560, 0, R.string.px2560, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_2560),
-    }).setAllowResize(false).addHeaderItem(Lang.getString(R.string.SizeLimitDesc)).setIntDelegate((id, result) -> {
+    }).setAllowResize(false).addHeaderItem(Lang.getMarkdownString(this, R.string.SizeLimitDesc)).setIntDelegate((id, result) -> {
       int sizeOption = MoexConfig.instance().getSizeLimit();
       int sizeLimit = result.get(R.id.btn_changeSizeLimit);
       switch (sizeLimit) {
@@ -132,8 +132,8 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
             view.getToggler().setRadioEnabled(MoexConfig.hideMessagesBadge, isUpdate);
             break;
           case R.id.btn_headerText: {
-            int mode = MoexConfig.instance().getHeaderText();
-            switch (mode) {
+            int header = MoexConfig.instance().getHeaderText();
+            switch (header) {
               case MoexConfig.HEADER_TEXT_CHATS:
                 view.setData(R.string.Chats);
                 break;
@@ -171,6 +171,7 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     ArrayList<ListItem> items = new ArrayList<>();
     items.add(new ListItem(ListItem.TYPE_EMPTY_OFFSET_SMALL));
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.DrawerOptions));
+    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_hidePhone, 0, R.string.hidePhoneNumber));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_showIdProfile, 0, R.string.showIdProfile));
@@ -181,6 +182,7 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.ExperimentalOptions));
+    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_enableFeaturesButton, 0, R.string.EnableFeatures));
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
     items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.FeaturesButtonInfo), false));

@@ -35,7 +35,7 @@ public class Config {
   public static final boolean CHAT_FOLDERS_ENABLED = true;
   public static final boolean CHAT_FOLDERS_SMART_CHAT_DELETION_ENABLED = true;
   public static final boolean CHAT_FOLDERS_HIDE_BOTTOM_BAR_ON_SCROLL = true;
-  public static final boolean SEARCH_MESSAGES_ONLY_IN_SELECTED_FOLDER = BuildConfig.EXPERIMENTAL;
+  public static final boolean SEARCH_MESSAGES_ONLY_IN_SELECTED_FOLDER = true; //BuildConfig.EXPERIMENTAL
 
   public static final boolean NEED_SILENT_BROADCAST = false;
 

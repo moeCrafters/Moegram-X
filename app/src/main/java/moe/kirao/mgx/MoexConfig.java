@@ -242,11 +242,11 @@ public class MoexConfig {
     return getInt(KEY_CHANGE_HEADER_TEXT, HEADER_TEXT_MOEX);
   }
 
-  public void setHeaderText (int mode) {
-    if (mode == HEADER_TEXT_MOEX) {
+  public void setHeaderText (int header) {
+    if (header == HEADER_TEXT_MOEX) {
       remove(KEY_CHANGE_HEADER_TEXT);
     } else {
-      putInt(KEY_CHANGE_HEADER_TEXT, mode);
+      putInt(KEY_CHANGE_HEADER_TEXT, header);
     }
   }
 

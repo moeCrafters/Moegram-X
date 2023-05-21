@@ -326,26 +326,23 @@ public class MainController extends ViewPagerController<Void> implements Menu, M
 
   @Override
   public CharSequence getName () {
-    String title = "";
     int mode = MoexConfig.instance().getHeaderText();
     switch (mode) {
       case 0:
-        title = Lang.getString(R.string.Chats);
-        break;
+        return Lang.getString(R.string.Chats);
+      default:
       case 1:
-        title = Lang.getString(R.string.moexHeaderClient);
-        break;
+        return Lang.getString(R.string.moexHeaderClient);
       case 2:
-        title = tdlib.account().getUsername();
-        if (title == null || StringUtils.isEmpty(title)) {
-          title = tdlib.account().getFirstName();
+        String title = tdlib.account().getUsername();
+        if (title != null && !StringUtils.isEmpty(title)) {
+          return title;
+        } else {
+          return tdlib.account().getFirstName();
         }
-        break;
       case 3:
-        title = tdlib.account().getFirstName();
-        break;
+        return tdlib.account().getFirstName();
     }
-    return title;
   }
 
   @Override

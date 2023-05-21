@@ -77,6 +77,7 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
     ArrayList<ListItem> items = new ArrayList<>();
     items.add(new ListItem(ListItem.TYPE_EMPTY_OFFSET_SMALL));
     items.add(new ListItem(ListItem.TYPE_HEADER, 0, 0, R.string.MoexStickersCount));
+    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_disableStickerTimestamp, 0, R.string.DisableStickerTimestamp));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_roundedStickers, 0, R.string.RoundedStickers));
@@ -86,7 +87,6 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_ReorderStickers, 0, R.string.ReorderStickers));
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
     items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.ReorderStickersInfo), false));
-    items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
 
     adapter.setItems(items, true);
     recyclerView.setAdapter(adapter);
