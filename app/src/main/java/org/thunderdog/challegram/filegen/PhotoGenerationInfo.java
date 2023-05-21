@@ -420,12 +420,11 @@ public class PhotoGenerationInfo extends GenerationInfo {
     switch (size) {
       case 0:
         return  800;
+      default:
       case 1:
         return 1280;
       case 2:
         return 2560;
-      default:
-        return 1;
     }
   }
 }

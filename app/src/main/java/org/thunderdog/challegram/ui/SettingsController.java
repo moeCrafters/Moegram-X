@@ -635,7 +635,7 @@ public class SettingsController extends ViewController<Void> implements
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
 
     items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));
-    items.add(new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_checkUpdates, R.drawable.baseline_casino_24, R.string.moexChannel));
+    items.add(new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_checkUpdates, R.drawable.baseline_assignment_24, R.string.moexChannel));
     if (!U.isAppSideLoaded()) {
       items.add(new ListItem(ListItem.TYPE_SEPARATOR));
       items.add(new ListItem(ListItem.TYPE_SETTING, R.id.btn_subscribeToBeta, R.drawable.templarian_baseline_flask_24, R.string.SubscribeToBeta));
