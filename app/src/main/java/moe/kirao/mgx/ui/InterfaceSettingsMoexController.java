@@ -28,24 +28,19 @@ public class InterfaceSettingsMoexController extends RecyclerViewController<Void
   }
 
   @Override public void onClick (View v) {
-    int id = v.getId();
-    switch (id) {
-      case R.id.btn_disableCameraButton:
-        MoexConfig.instance().toggleDisableCameraButton();
-        adapter.updateValuedSettingById(R.id.btn_disableCameraButton);
-        break;
-      case R.id.btn_disableRecordButton:
-        MoexConfig.instance().toggleDisableRecordButton();
-        adapter.updateValuedSettingById(R.id.btn_disableRecordButton);
-        break;
-      case R.id.btn_disableCommandsButton:
-        MoexConfig.instance().toggleDisableCommandsButton();
-        adapter.updateValuedSettingById(R.id.btn_disableCommandsButton);
-        break;
-      case R.id.btn_disableSendAsButton:
-        MoexConfig.instance().toggleDisableSendAsButton();
-        adapter.updateValuedSettingById(R.id.btn_disableSendAsButton);
-        break;
+    int viewId = v.getId();
+    if (viewId == R.id.btn_disableCameraButton) {
+      MoexConfig.instance().toggleDisableCameraButton();
+      adapter.updateValuedSettingById(R.id.btn_disableCameraButton);
+    } else if (viewId == R.id.btn_disableRecordButton) {
+      MoexConfig.instance().toggleDisableRecordButton();
+      adapter.updateValuedSettingById(R.id.btn_disableRecordButton);
+    } else if (viewId == R.id.btn_disableCommandsButton) {
+      MoexConfig.instance().toggleDisableCommandsButton();
+      adapter.updateValuedSettingById(R.id.btn_disableCommandsButton);
+    } else if (viewId == R.id.btn_disableSendAsButton) {
+      MoexConfig.instance().toggleDisableSendAsButton();
+      adapter.updateValuedSettingById(R.id.btn_disableSendAsButton);
     }
   }
 
@@ -57,19 +52,15 @@ public class InterfaceSettingsMoexController extends RecyclerViewController<Void
     adapter = new SettingsAdapter(this) {
       @Override protected void setValuedSetting (ListItem item, SettingView view, boolean isUpdate) {
         view.setDrawModifier(item.getDrawModifier());
-        switch (item.getId()) {
-          case R.id.btn_disableCameraButton:
-            view.getToggler().setRadioEnabled(MoexConfig.disableCameraButton, isUpdate);
-            break;
-          case R.id.btn_disableRecordButton:
-            view.getToggler().setRadioEnabled(MoexConfig.disableRecordButton, isUpdate);
-            break;
-          case R.id.btn_disableCommandsButton:
-            view.getToggler().setRadioEnabled(MoexConfig.disableCommandsButton, isUpdate);
-            break;
-          case R.id.btn_disableSendAsButton:
-            view.getToggler().setRadioEnabled(MoexConfig.disableSendAsButton, isUpdate);
-            break;
+        int itemId = item.getId();
+        if (itemId == R.id.btn_disableCameraButton) {
+          view.getToggler().setRadioEnabled(MoexConfig.disableCameraButton, isUpdate);
+        } else if (itemId == R.id.btn_disableRecordButton) {
+          view.getToggler().setRadioEnabled(MoexConfig.disableRecordButton, isUpdate);
+        } else if (itemId == R.id.btn_disableCommandsButton) {
+          view.getToggler().setRadioEnabled(MoexConfig.disableCommandsButton, isUpdate);
+        } else if (itemId == R.id.btn_disableSendAsButton) {
+          view.getToggler().setRadioEnabled(MoexConfig.disableSendAsButton, isUpdate);
         }
       }
     };

@@ -21,7 +21,7 @@
   <item name="btn_roundedStickers" type="id" />
   <item name="btn_IncreaseRecents" type="id" />
   <item name="btn_hideMessagesBadge" type="id" />
-    <item name="btn_ReorderStickers" type="id" />
+  <item name="btn_reorderStickers" type="id" />
   <item name="btn_changeSizeLimit" type="id" />
   <item name="btn_sizeLimit800" type="id" />
   <item name="btn_sizeLimit1280" type="id" />
