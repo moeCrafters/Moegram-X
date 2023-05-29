@@ -28,24 +28,19 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
   }
 
   @Override public void onClick (View v) {
-    int id = v.getId();
-    switch (id) {
-      case R.id.btn_disableStickerTimestamp:
-        MoexConfig.instance().toggleDisableStickerTimestamp();
-        adapter.updateValuedSettingById(R.id.btn_disableStickerTimestamp);
-        break;
-      case R.id.btn_roundedStickers:
-        MoexConfig.instance().toggleRoundedStickers();
-        adapter.updateValuedSettingById(R.id.btn_roundedStickers);
-        break;
-      case R.id.btn_IncreaseRecents:
-        MoexConfig.instance().toggleIncreaseRecents();
-        adapter.updateValuedSettingById(R.id.btn_IncreaseRecents);
-        break;
-      case R.id.btn_ReorderStickers:
-        MoexConfig.instance().toggleEnableReorderStickers();
-        adapter.updateValuedSettingById(R.id.btn_ReorderStickers);
-        break;
+    int viewId = v.getId();
+    if (viewId == R.id.btn_disableStickerTimestamp) {
+      MoexConfig.instance().toggleDisableStickerTimestamp();
+      adapter.updateValuedSettingById(R.id.btn_disableStickerTimestamp);
+    } else if (viewId == R.id.btn_roundedStickers) {
+      MoexConfig.instance().toggleRoundedStickers();
+      adapter.updateValuedSettingById(R.id.btn_roundedStickers);
+    } else if (viewId == R.id.btn_IncreaseRecents) {
+      MoexConfig.instance().toggleIncreaseRecents();
+      adapter.updateValuedSettingById(R.id.btn_IncreaseRecents);
+    } else if (viewId == R.id.btn_reorderStickers) {
+      MoexConfig.instance().toggleEnableReorderStickers();
+      adapter.updateValuedSettingById(R.id.btn_reorderStickers);
     }
   }
 
@@ -57,19 +52,15 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
     adapter = new SettingsAdapter(this) {
       @Override protected void setValuedSetting (ListItem item, SettingView view, boolean isUpdate) {
         view.setDrawModifier(item.getDrawModifier());
-        switch (item.getId()) {
-          case R.id.btn_disableStickerTimestamp:
-            view.getToggler().setRadioEnabled(MoexConfig.hideStickerTimestamp, isUpdate);
-            break;
-          case R.id.btn_roundedStickers:
-            view.getToggler().setRadioEnabled(MoexConfig.roundedStickers, isUpdate);
-            break;
-          case R.id.btn_IncreaseRecents:
-            view.getToggler().setRadioEnabled(MoexConfig.increaseRecents, isUpdate);
-            break;
-          case R.id.btn_ReorderStickers:
-            view.getToggler().setRadioEnabled(MoexConfig.reorderStickers, isUpdate);
-            break;
+        int itemId = item.getId();
+        if (itemId == R.id.btn_disableStickerTimestamp) {
+          view.getToggler().setRadioEnabled(MoexConfig.hideStickerTimestamp, isUpdate);
+        } else if (itemId == R.id.btn_roundedStickers) {
+          view.getToggler().setRadioEnabled(MoexConfig.roundedStickers, isUpdate);
+        } else if (itemId == R.id.btn_IncreaseRecents) {
+          view.getToggler().setRadioEnabled(MoexConfig.increaseRecents, isUpdate);
+        } else if (itemId == R.id.btn_reorderStickers) {
+          view.getToggler().setRadioEnabled(MoexConfig.reorderStickers, isUpdate);
         }
       }
     };
@@ -83,7 +74,7 @@ public class ChatsSettingsMoexController extends RecyclerViewController<Void> im
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
     items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_IncreaseRecents, 0, R.string.IncreaseRecents));
     items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
-    items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_ReorderStickers, 0, R.string.ReorderStickers));
+    items.add(new ListItem(ListItem.TYPE_RADIO_SETTING, R.id.btn_reorderStickers, 0, R.string.ReorderStickers));
     items.add(new ListItem(ListItem.TYPE_SHADOW_BOTTOM));
     items.add(new ListItem(ListItem.TYPE_DESCRIPTION, 0, 0, Lang.getMarkdownString(this, R.string.ReorderStickersInfo), false));
     items.add(new ListItem(ListItem.TYPE_SHADOW_TOP));

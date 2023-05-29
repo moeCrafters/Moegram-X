@@ -29,34 +29,23 @@ public class SettingsMoexController extends RecyclerViewController<Void> impleme
   }
 
   @Override public void onClick (View v) {
-    int id = v.getId();
-    switch (id) {
-      case R.id.btn_GeneralMoexSettings: {
-        navigateTo(new GeneralSettingsMoexController(context, tdlib));
-        break;
-      } case R.id.btn_InterfaceMoexSettings: {
-        navigateTo(new InterfaceSettingsMoexController(context, tdlib));
-        break;
-      } case R.id.btn_ChatsMoexSettings: {
-        navigateTo(new ChatsSettingsMoexController(context, tdlib));
-        break;
-      } case R.id.btn_moexChannelLink : {
-        tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexChannelLink), new TdlibUi.UrlOpenParameters().forceInstantView());
-        break;
-      } case R.id.btn_moexChatLink : {
-        tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexChatLink), new TdlibUi.UrlOpenParameters().forceInstantView());
-        break;
-      } case R.id.btn_moexUpdatesLink : {
-        tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexUpdatesLink), new TdlibUi.UrlOpenParameters().forceInstantView());
-        break;
-      } case R.id.btn_moexSourceLink: {
-        tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexSourceLink), new TdlibUi.UrlOpenParameters().forceInstantView());
-        break;
-      }
-      case R.id.btn_build: {
-        UI.copyText(Lang.getStringSecure(R.string.MoexVer) + " (" + BuildConfig.COMMIT + ")\n", R.string.CopiedText);
-        break;
-      }
+    int viewId = v.getId();
+    if (viewId == R.id.btn_GeneralMoexSettings) {
+      navigateTo(new GeneralSettingsMoexController(context, tdlib));
+    } else if (viewId == R.id.btn_InterfaceMoexSettings) {
+      navigateTo(new InterfaceSettingsMoexController(context, tdlib));
+    } else if (viewId == R.id.btn_ChatsMoexSettings) {
+      navigateTo(new ChatsSettingsMoexController(context, tdlib));
+    } else if (viewId == R.id.btn_moexChannelLink) {
+      tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexChannelLink), new TdlibUi.UrlOpenParameters().forceInstantView());
+    } else if (viewId == R.id.btn_moexChatLink) {
+      tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexChatLink), new TdlibUi.UrlOpenParameters().forceInstantView());
+    } else if (viewId == R.id.btn_moexUpdatesLink) {
+      tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexUpdatesLink), new TdlibUi.UrlOpenParameters().forceInstantView());
+    } else if (viewId == R.id.btn_moexSourceLink) {
+      tdlib.ui().openUrl(this, Lang.getStringSecure(R.string.MoexSourceLink), new TdlibUi.UrlOpenParameters().forceInstantView());
+    } else if (viewId == R.id.btn_build) {
+      UI.copyText(Lang.getStringSecure(R.string.MoexVer) + " (" + BuildConfig.COMMIT + ")\n", R.string.CopiedText);
     }
   }
 
@@ -76,19 +65,15 @@ public class SettingsMoexController extends RecyclerViewController<Void> impleme
     SettingsAdapter adapter = new SettingsAdapter(this) {
       @Override protected void setValuedSetting (ListItem item, SettingView view, boolean isUpdate) {
         view.setDrawModifier(item.getDrawModifier());
-        switch (item.getId()) {
-          case R.id.btn_moexChannelLink:
-            view.setData(R.string.moexChannel);
-            break;
-          case R.id.btn_moexChatLink:
-            view.setData(R.string.moexChat);
-            break;
-          case R.id.btn_moexUpdatesLink:
-            view.setData(R.string.moexUpdates);
-            break;
-          case R.id.btn_moexSourceLink:
-            view.setData(R.string.moexGithub);
-            break;
+        int itemId = item.getId();
+        if (itemId == R.id.btn_moexChannelLink) {
+          view.setData(R.string.moexChannel);
+        } else if (itemId == R.id.btn_moexChatLink) {
+          view.setData(R.string.moexChat);
+        } else if (itemId == R.id.btn_moexUpdatesLink) {
+          view.setData(R.string.moexUpdates);
+        } else if (itemId == R.id.btn_moexSourceLink) {
+          view.setData(R.string.moexGithub);
         }
       }
     };

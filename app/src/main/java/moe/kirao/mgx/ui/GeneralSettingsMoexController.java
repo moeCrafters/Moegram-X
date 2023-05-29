@@ -29,27 +29,21 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
   }
 
   @Override public void onClick (View v) {
-    int id = v.getId();
-    switch (id) {
-      case R.id.btn_hidePhone:
-        MoexConfig.instance().toggleHidePhoneNumber();
-        adapter.updateValuedSettingById(R.id.btn_hidePhone);
-        break;
-      case R.id.btn_enableFeaturesButton:
-        MoexConfig.instance().toggleEnableFeaturesButton();
-        adapter.updateValuedSettingById(R.id.btn_enableFeaturesButton);
-        break;
-      case R.id.btn_showIdProfile:
-        MoexConfig.instance().toggleShowIdProfile();
-        adapter.updateValuedSettingById(R.id.btn_showIdProfile);
-        break;
-      case R.id.btn_hideMessagesBadge:
-        MoexConfig.instance().toggleHideMessagesBadge();
-        adapter.updateValuedSettingById(R.id.btn_hideMessagesBadge);
-        break;
-      case R.id.btn_changeSizeLimit:
-        showChangeSizeLimit();
-        break;
+    int viewId = v.getId();
+    if (viewId == R.id.btn_hidePhone) {
+      MoexConfig.instance().toggleHidePhoneNumber();
+      adapter.updateValuedSettingById(R.id.btn_hidePhone);
+    } else if (viewId == R.id.btn_enableFeaturesButton) {
+      MoexConfig.instance().toggleEnableFeaturesButton();
+      adapter.updateValuedSettingById(R.id.btn_enableFeaturesButton);
+    } else if (viewId == R.id.btn_showIdProfile) {
+      MoexConfig.instance().toggleShowIdProfile();
+      adapter.updateValuedSettingById(R.id.btn_showIdProfile);
+    } else if (viewId == R.id.btn_hideMessagesBadge) {
+      MoexConfig.instance().toggleHideMessagesBadge();
+      adapter.updateValuedSettingById(R.id.btn_hideMessagesBadge);
+    } else if (viewId == R.id.btn_changeSizeLimit) {
+      showChangeSizeLimit();
     }
   }
 
@@ -60,18 +54,14 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit1280, 0, R.string.px1280, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_1280),
       new ListItem(ListItem.TYPE_RADIO_OPTION, R.id.btn_sizeLimit2560, 0, R.string.px2560, R.id.btn_changeSizeLimit, sizeLimitOption == MoexConfig.SIZE_LIMIT_2560),
     }).setAllowResize(false).addHeaderItem(Lang.getString(R.string.SizeLimitDesc)).setIntDelegate((id, result) -> {
-      int sizeOption = MoexConfig.instance().getSizeLimit();
+      int sizeOption;
       int sizeLimit = result.get(R.id.btn_changeSizeLimit);
-      switch (sizeLimit) {
-        case R.id.btn_sizeLimit800:
-          sizeOption = MoexConfig.SIZE_LIMIT_800;
-          break;
-        case R.id.btn_sizeLimit1280:
-          sizeOption = MoexConfig.SIZE_LIMIT_1280;
-          break;
-        case R.id.btn_sizeLimit2560:
-          sizeOption = MoexConfig.SIZE_LIMIT_2560;
-          break;
+      if (sizeLimit == R.id.btn_sizeLimit800) {
+        sizeOption = MoexConfig.SIZE_LIMIT_800;
+      } else if (sizeLimit == R.id.btn_sizeLimit1280) {
+        sizeOption = MoexConfig.SIZE_LIMIT_1280;
+      } else {
+        sizeOption = MoexConfig.SIZE_LIMIT_2560;
       }
       MoexConfig.instance().setSizeLimit(sizeOption);
       adapter.updateValuedSettingById(R.id.btn_changeSizeLimit);
@@ -86,20 +76,16 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
     adapter = new SettingsAdapter(this) {
       @Override protected void setValuedSetting (ListItem item, SettingView view, boolean isUpdate) {
         view.setDrawModifier(item.getDrawModifier());
-        switch (item.getId()) {
-          case R.id.btn_hidePhone:
-            view.getToggler().setRadioEnabled(MoexConfig.hidePhoneNumber, isUpdate);
-            break;
-          case R.id.btn_enableFeaturesButton:
-            view.getToggler().setRadioEnabled(MoexConfig.enableTestFeatures, isUpdate);
-            break;
-          case R.id.btn_showIdProfile:
-            view.getToggler().setRadioEnabled(MoexConfig.showId, isUpdate);
-            break;
-          case R.id.btn_hideMessagesBadge:
-            view.getToggler().setRadioEnabled(MoexConfig.hideMessagesBadge, isUpdate);
-            break;
-          case R.id.btn_changeSizeLimit: {
+        int itemId = item.getId();
+        if (itemId == R.id.btn_hidePhone) {
+          view.getToggler().setRadioEnabled(MoexConfig.hidePhoneNumber, isUpdate);
+        } else if (itemId == R.id.btn_enableFeaturesButton) {
+          view.getToggler().setRadioEnabled(MoexConfig.enableTestFeatures, isUpdate);
+        } else if (itemId == R.id.btn_showIdProfile) {
+          view.getToggler().setRadioEnabled(MoexConfig.showId, isUpdate);
+        } else if (itemId == R.id.btn_hideMessagesBadge) {
+          view.getToggler().setRadioEnabled(MoexConfig.hideMessagesBadge, isUpdate);
+        } else if (itemId == R.id.btn_changeSizeLimit) {
             int size = MoexConfig.instance().getSizeLimit();
             switch (size) {
               case MoexConfig.SIZE_LIMIT_800:
@@ -112,10 +98,8 @@ public class GeneralSettingsMoexController extends RecyclerViewController<Void> 
                 view.setData(R.string.px2560);
                 break;
             }
-            break;
           }
         }
-      }
     };
 
     ArrayList<ListItem> items = new ArrayList<>();
