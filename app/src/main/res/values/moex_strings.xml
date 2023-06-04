@@ -37,7 +37,7 @@
   <string name="MobileHidden">Mobile hidden</string>
   <string name="MoexAbout">About</string>
   <string name="MoexAboutText">**moeGramX** — is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
-<string name="MoexVer">Moegram-X v1.3-release</string>
+  <string name="MoexVer">moeGramX v1.3-release (Dorayaki)</string>
   <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu.</string>
   <string name="IncreaseRecents">Increase recent stickers</string>
   <string name="hideMessagesBadge">Hide unread messages badge</string>
@@ -54,4 +54,8 @@
   <string name="changeSizeLimit">Photo resolution</string>
   <string name="changeSizeLimitInfo">Change the resolution of sent photos</string>
   <string name="SizeLimitDesc">This feature is unstable and can cause a bit of minor interface bugs. Change to **1280px** and clear cache via storage settings if you see any visual bugs with sent photos.</string>
+  <string name="CopiedPhoto">Photo has been copied to the clipboard</string>
+  <string name="CopyPhoto">Copy photo</string>
+  <string name="CopySticker">Copy sticker</string>
+  <string name="CopiedSticker">Sticker has been copied to the clipboard</string>
 </resources>

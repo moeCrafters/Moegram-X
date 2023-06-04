@@ -173,6 +173,7 @@ import me.vkryl.td.ChatId;
 import me.vkryl.td.MessageId;
 import me.vkryl.td.Td;
 import me.vkryl.td.TdConstants;
+import moe.kirao.mgx.utils.SystemUtils;
 
 public class MediaViewController extends ViewController<MediaViewController.Args> implements
   PopupLayout.AnimatedPopupProvider, FactorAnimator.Target, View.OnClickListener,
@@ -1505,6 +1506,10 @@ public class MediaViewController extends ViewController<MediaViewController.Args
         }
         ids.append(R.id.btn_saveToGallery);
         strings.append(R.string.SaveToGallery);
+        if (item.isPhoto() || item.isAvatar()) {
+          ids.append(R.id.btn_copyPhoto);
+          strings.append(R.string.CopyPhoto);
+        }
       }
 
       if (mode != MODE_SECRET && mode != MODE_GALLERY && item.canBeSaved() && item.canBeShared()) {
@@ -1572,6 +1577,13 @@ public class MediaViewController extends ViewController<MediaViewController.Args
           runOnUiThreadOptional(() -> {
             U.copyToGallery(context, file.local.path, item.isAnimatedAvatar() || item.isGifType() ? U.TYPE_GIF : item.isVideo() ? U.TYPE_VIDEO : U.TYPE_PHOTO);
           });
+        }
+      });
+    } else if (id == R.id.btn_copyPhoto) {
+      TdApi.File file = item.getTargetFile();
+      tdlib.files().isFileLoadedAndExists(file, isLoadedAndExists -> {
+        if (isLoadedAndExists) {
+          runOnUiThreadOptional(() -> SystemUtils.copyFileToClipboard(file, R.string.CopiedPhoto));
         }
       });
     } else if (id == R.id.btn_saveGif) {
