@@ -39,4 +39,8 @@
   <string name="changeSizeLimit">Разрешение фото</string>
   <string name="changeSizeLimitInfo">Изменить разрешение отправленных фото</string>
   <string name="SizeLimitDesc">Эта функция нестабильна и может повлечь за собой пару визуальных проблем. Выбирите **1280px** и очистите данные через меню хранилища если наблюдаете критические ошибки, связанные с отправкой фото</string>
+  <string name="CopiedPhoto">Фотография была скопирована в буфер</string>
+  <string name="CopyPhoto">Копировать фото</string>
+  <string name="CopySticker">Копировать стикер</string>
+  <string name="CopiedSticker">Стикер был скопирован в буфер</string>
 </resources>

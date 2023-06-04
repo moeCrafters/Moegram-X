@@ -1027,11 +1027,12 @@ public class SettingsController extends ViewController<Void> implements
         strings.append(R.string.Copy);
         icons.append(R.drawable.baseline_content_copy_24);
 
-      if (user != null) {
-        showOptions("ID " + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
-          UI.copyText(String.valueOf(user.id), R.string.CopiedText);
-          return true;
-        });
+        if (user != null) {
+          showOptions("ID " + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
+            UI.copyText(String.valueOf(user.id), R.string.CopiedText);
+            return true;
+          });
+        }
       }
       case R.id.btn_languageSettings: {
         navigateTo(new SettingsLanguageController(context, tdlib));

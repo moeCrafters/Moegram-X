@@ -32,16 +32,16 @@
   <string name="ExperimentalOptions">Experimental options</string>
   <string name="PhoneHidden">Phone hidden</string>
   <string name="ChatId">ID</string>
-  <string name="showIdProfile">Show User ID in profile</string>
-  <string name="DisableSendAsButton">Hide "Send as Channel" button</string>
+  <string name="showIdProfile">Show User ID in profiles</string>
+  <string name="DisableSendAsButton">Hide \"Send as Channel\" button</string>
   <string name="MobileHidden">Mobile hidden</string>
   <string name="MoexAbout">About</string>
   <string name="MoexAboutText">**moeGramX** — is a cute features rich a bit experimental client based on the official sources and TDlib. Feel free to suggest some features, report problems or just chat in our Discuss group!</string>
-<string name="MoexVer">Moegram-X v1.3-nightly (Daifuku)</string>
+<string name="MoexVer">Moegram-X v1.3-nightly (Dorayaki)</string>
   <string name="HideCameraButtonInfo">This option move camera button from message panel to the attach menu.</string>
-  <string name="IncreaseRecents">Increase recents stickers count</string>
+  <string name="IncreaseRecents">Increase recent stickers</string>
   <string name="hideMessagesBadge">Hide unread messages badge</string>
-  <string name="ReorderStickers">Reorder installed sticker packs</string>
+  <string name="ReorderStickers">Reorder installed stickers</string>
   <string name="ReorderStickersInfo">Automatically place recently used sticker packs above others.</string>
   <string name="moexChannel">\@moegramx</string>
   <string name="moexChat">\@moe_chat</string>
@@ -56,4 +56,8 @@
   <string name="changeSizeLimit">Photo resolution</string>
   <string name="changeSizeLimitInfo">Change the resolution of sent photos</string>
   <string name="SizeLimitDesc">This feature is unstable and can cause a bit of minor interface bugs. Change to **1280px** and clear cache via storage settings if you see any visual bugs with sent photos.</string>
+  <string name="CopiedPhoto">Photo has been copied to the clipboard</string>
+  <string name="CopyPhoto">Copy photo</string>
+  <string name="CopySticker">Copy sticker</string>
+  <string name="CopiedSticker">Sticker has been copied to the clipboard</string>
 </resources>

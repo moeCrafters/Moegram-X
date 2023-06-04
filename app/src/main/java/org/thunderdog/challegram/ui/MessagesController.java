@@ -275,6 +275,7 @@ import me.vkryl.td.MessageId;
 import me.vkryl.td.Td;
 import me.vkryl.td.TdConstants;
 import moe.kirao.mgx.MoexConfig;
+import moe.kirao.mgx.utils.SystemUtils;
 
 public class MessagesController extends ViewController<MessagesController.Arguments> implements
   Menu, Unlockable, View.OnClickListener,
@@ -5571,6 +5572,25 @@ public class MessagesController extends ViewController<MessagesController.Argume
             tdlib.ui().saveGifs(((List<TD.DownloadedFile>) selectedMessageTag));
           }
           return true;
+        }
+        case R.id.btn_copyPhoto: {
+          TdApi.File file = TD.getFile(selectedMessage);
+          tdlib.files().isFileLoadedAndExists(file, isLoadedAndExists -> {
+            if (isLoadedAndExists) {
+              runOnUiThreadOptional(() -> SystemUtils.copyFileToClipboard(file, R.string.CopiedPhoto));
+            }
+          });
+          break;
+        }
+        case R.id.btn_copySticker: {
+          TdApi.MessageContent content = selectedMessage.getMessage().content;
+          TdApi.File file = ((TdApi.MessageSticker) content).sticker.sticker;
+          tdlib.files().isFileLoadedAndExists(file, isLoadedAndExists -> {
+            if (isLoadedAndExists) {
+              runOnUiThreadOptional(() -> SystemUtils.copyFileToClipboard(file, R.string.CopiedSticker));
+            }
+          });
+          break;
         }
         case R.id.btn_saveFile: {
           if (selectedMessageTag != null) {
