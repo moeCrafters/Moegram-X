@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="MoexSettings">Opciones de moeGramX</string>
+  <string name="GeneralMoexSettings">General</string>
+  <string name="InterfaceMoexSettings">Interfaz</string>
+  <string name="ChatsMoexSettings">Chats</string>
+  <string name="MoexLinks">Enlaces</string>
+  <string name="MoexChannelText">Canal</string>
+  <string name="MoexChatText">Chat</string>
+  <string name="MoexSourceText">Fuente</string>
+  <string name="MoexCategories">Categorías</string>
+  <string name="MoexGeneralSettings">Opciones generales</string>
+  <string name="MoexInterfaceSettings">Opciones de interfaz</string>
+  <string name="MoexHideButtons">Panel de mensajes</string>
+  <string name="DisableCommandsButton">Ocultar botón de comandos</string>
+  <string name="DisableCameraButton">Ocultar botón de cámara</string>
+  <string name="DisableRecordButton">Ocultar botón de grabación</string>
+  <string name="moexNews">Canal del cliente moeGramX</string>
+  <string name="MoexChatsSettings">Opciones de chat</string>
+  <string name="MoexStickersCount">Stickers</string>
+  <string name="DisableStickerTimestamp">Ocultar hora en stickers</string>
+  <string name="RoundedStickers">Stickers redondeados</string>
+  <string name="DrawerOptions">Opciones del cajón</string>
+  <string name="hidePhoneNumber">Ocultar número de teléfono</string>
+  <string name="EnableFeatures">Activar ajustes experimentales</string>
+  <string name="FeaturesButtonInfo">Muestra el botón de ajustes experimentales en el cajón</string>
+  <string name="ExperimentalOptions">Opciones experimentales</string>
+  <string name="PhoneHidden">Número oculto</string>
+  <string name="showIdProfile">Mostrar ID de usuario en perfiles</string>
+  <string name="DisableSendAsButton">Ocultar botón \"Enviar como canal\"</string>
+  <string name="MobileHidden">Número oculto</string>
+  <string name="MoexAbout">Acerca de</string>
+  <string name="MoexAboutText">**moeGramX** — es un lindo cliente experimental rico en funciones basado en las fuentes oficiales y TDlib. ¡Siéntase libre de sugerir algunas funciones, reportar problemas o simplemente chatear en nuestro grupo de Discusión!</string>
+  <string name="HideCameraButtonInfo">Esta opción mueve el botón de la cámara del panel de mensajes al menú adjuntar.</string>
+  <string name="IncreaseRecents">Incrementar stickers recientes</string>
+  <string name="hideMessagesBadge">Ocultar icono de mensajes no leídos</string>
+  <string name="ReorderStickers">Reordenar stickers instalados</string>
+  <string name="ReorderStickersInfo">Colocar automáticamente packs de stickers usados recientemente por encima de otros.</string>
+  <string name="MoexCuteSettings">Un pequeño moe va a un largo camino ~</string>
+  <string name="changeSizeLimit">Resolución de fotos</string>
+  <string name="changeSizeLimitInfo">Cambiar la resolución de las fotos enviadas</string>
+  <string name="SizeLimitDesc">Esta función es inestable y puede causar un poco de errores menores de la interfaz. Cambia a **1280px** y limpia la caché a través de los ajustes de almacenamiento si ves algún error visual con las fotos enviadas.</string>
+  <string name="CopiedPhoto">La foto ha sido copiada al portapapeles</string>
+  <string name="CopyPhoto">Copiar foto</string>
+  <string name="CopySticker">Copiar sticker</string>
+  <string name="CopiedSticker">Sticker copiado al portapapeles</string>
+</resources>
