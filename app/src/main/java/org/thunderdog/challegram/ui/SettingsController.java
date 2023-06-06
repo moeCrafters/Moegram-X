@@ -503,7 +503,7 @@ public class SettingsController extends ViewController<Void> implements
         } else if (itemId == R.id.btn_chatId) {
           final TdApi.User user = tdlib.myUser();
           if (user != null) {
-            view.setData("" + user.id);
+            view.setData(String.valueOf(user.id));
           } else {
             view.setData(R.string.unknownUser);
           }
@@ -973,13 +973,8 @@ public class SettingsController extends ViewController<Void> implements
       icons.append(R.drawable.baseline_content_copy_24);
 
       if (user != null) {
-        showOptions("" + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
-          UI.copyText("" + user.id, R.string.CopiedText);
-          return true;
-        });
-      } else {
-        showOptions(Lang.getStringSecure(R.string.unknownUser) , ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
-          UI.copyText(Lang.getStringSecure(R.string.unknownUser), R.string.CopiedText);
+        showOptions("ID " + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
+          UI.copyText(String.valueOf(user.id), R.string.CopiedText);
           return true;
         });
       }

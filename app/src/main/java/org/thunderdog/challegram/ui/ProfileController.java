@@ -1661,13 +1661,21 @@ public class ProfileController extends ViewController<ProfileController.Args> im
         final int itemId = item.getId();
         if (itemId == R.id.btn_useExplicitDice) {
           view.getToggler().setRadioEnabled(Settings.instance().getNewSetting(item.getLongId()), isUpdate);
-        } else if (R.id.btn_chatId) {
-          view.setData("" + user.id);
+        } else if (itemId == R.id.btn_chatId) {
+          switch (mode) {
+            case MODE_USER:
+            case MODE_SECRET:
+            case MODE_CHANNEL:
+            case MODE_SUPERGROUP: {
+              view.setData(String.valueOf(chat.id));
+              break;
+            }
+          }
         } else if (itemId == R.id.btn_username) {
           view.setName(getUsernameName());
           view.setData(getUsernameData());
         } else if (itemId == R.id.btn_phone) {
-          if (tdlib.isSelfUserId(user.id) && MoexSettings.instance().isHidePhoneNumber()) {
+          if (tdlib.isSelfUserId(user.id) && MoexConfig.hidePhoneNumber) {
             view.setData(R.string.PhoneHidden);
           } else if (tdlib.isSelfUserId(user.id) && Settings.instance().needHidePhoneNumber()) {
             view.setData(Strings.replaceNumbers(Strings.formatPhone(user.phoneNumber)));
@@ -2292,7 +2300,15 @@ public class ProfileController extends ViewController<ProfileController.Args> im
   }
 
   private ListItem newChatIdItem () {
+    switch (mode) {
+      case MODE_USER:
+      case MODE_SECRET:
+      case MODE_CHANNEL:
+      case MODE_SUPERGROUP: {
         return new ListItem(ListItem.TYPE_INFO_SETTING, R.id.btn_chatId, R.drawable.baseline_fingerprint_24, R.string.ChatId, false);
+      }
+    }
+    return null;
   }
 
   private ListItem newEncryptionKeyItem () {
@@ -2319,7 +2335,9 @@ public class ProfileController extends ViewController<ProfileController.Args> im
 
     final ListItem chatIdItem = newChatIdItem();
     if (MoexConfig.showId && chatIdItem != null) {
-      if (addedCount != 0) items.add(new ListItem(ListItem.TYPE_SEPARATOR));
+      if (addedCount > 0) {
+        items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
+      }
       items.add(chatIdItem);
       addedCount++;
     }
@@ -2862,6 +2880,15 @@ public class ProfileController extends ViewController<ProfileController.Args> im
       }
     }
 
+    final ListItem chatIdItem = newChatIdItem();
+    if (MoexConfig.showId && chatIdItem != null) {
+      if (addedCount > 0) {
+        items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
+      }
+      items.add(chatIdItem);
+      addedCount++;
+    }
+
     if (tdlib.canCreateInviteLink(chat) && !isPublic) {
       if (addedCount > 0) {
         items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
@@ -2937,6 +2964,15 @@ public class ProfileController extends ViewController<ProfileController.Args> im
         items.add(usernameItem);
         addedCount++;
       }
+    }
+
+    final ListItem chatIdItem = newChatIdItem();
+    if (MoexConfig.showId && chatIdItem != null) {
+      if (addedCount > 0) {
+        items.add(new ListItem(ListItem.TYPE_SEPARATOR_FULL));
+      }
+      items.add(chatIdItem);
+      addedCount++;
     }
 
     /*if (canManageChat()) {
@@ -4513,8 +4549,8 @@ public class ProfileController extends ViewController<ProfileController.Args> im
       strings.append(R.string.Copy);
       icons.append(R.drawable.baseline_content_copy_24);
 
-      showOptions("" + user.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
-        UI.copyText("" + user.id, R.string.CopiedText);
+      showOptions("ID " + chat.id, ids.get(), strings.get(), null, icons.get(), (itemView, id) -> {
+        UI.copyText(String.valueOf(chat.id), R.string.CopiedText);
         return true;
       });
     } else if (viewId == R.id.btn_username) {
