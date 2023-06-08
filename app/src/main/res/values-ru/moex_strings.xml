@@ -42,4 +42,5 @@
   <string name="CopyPhoto">Копировать фото</string>
   <string name="CopySticker">Копировать стикер</string>
   <string name="CopiedSticker">Стикер был скопирован в буфер</string>
+  <string name="Repeat">Повторить</string>
 </resources>
