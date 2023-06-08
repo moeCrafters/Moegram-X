@@ -60,4 +60,5 @@
   <string name="CopyPhoto">Copy photo</string>
   <string name="CopySticker">Copy sticker</string>
   <string name="CopiedSticker">Sticker has been copied to the clipboard</string>
+  <string name="Repeat">Repeat</string>
 </resources>

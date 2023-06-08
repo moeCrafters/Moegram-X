@@ -5603,6 +5603,10 @@ public class MessagesController extends ViewController<MessagesController.Argume
           }
           return true;
         }
+        case R.id.btn_msgRepeat: {
+          TdApi.Message msg = selectedMessage.getMessage();
+          tdlib.client().send(new TdApi.ForwardMessages(msg.chatId, msg.messageThreadId, msg.chatId, new long[] {msg.id}, null, true, false, false), tdlib.messageHandler());
+        }
         case R.id.btn_openIn: {
           if (selectedMessageTag != null) {
             TdApi.Document document = ((TdApi.MessageDocument) selectedMessage.getMessage().content).document;
