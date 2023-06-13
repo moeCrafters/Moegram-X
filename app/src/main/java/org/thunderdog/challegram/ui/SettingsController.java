@@ -1033,6 +1033,7 @@ public class SettingsController extends ViewController<Void> implements
             return true;
           });
         }
+        break;
       }
       case R.id.btn_languageSettings: {
         navigateTo(new SettingsLanguageController(context, tdlib));
