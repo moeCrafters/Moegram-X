@@ -874,10 +874,13 @@ public class MessageView extends SparseDrawableView implements Destroyable, Draw
           case TdApi.FileTypeVideoNote.CONSTRUCTOR: {
             break;
           }
+          case TdApi.FileTypeDocument.CONSTRUCTOR:
           case TdApi.FileTypeAnimation.CONSTRUCTOR:
           case TdApi.FileTypeVideo.CONSTRUCTOR:
           case TdApi.FileTypePhoto.CONSTRUCTOR: {
-            if (msg.canBeSaved()) {
+            TD.DownloadedFile downloadedFile = TD.getDownloadedFile(singleMessage);
+            String mimeType = downloadedFile != null ? downloadedFile.getMimeType() : null;
+            if (msg.canBeSaved() && (mimeType != null && mimeType.startsWith("image/"))) {
               ids.append(R.id.btn_saveFile);
               if (allMessages.length == 1) {
                 strings.append(R.string.SaveToGallery);
